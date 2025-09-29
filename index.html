@@ -961,19 +961,21 @@ function initLeadForm(lang='en'){
    Refer / share
    ------------------------- */
 function initRefer(lang='en'){
-  const shareWa = el('share-wa'), shareSms = el('share-sms');
+  const shareWa = document.getElementById('share-wa');
+  const shareSms = document.getElementById('share-sms');
+  
   if(shareWa){
     shareWa.addEventListener('click', ()=>{
-      const uid = Math.random().toString(36).slice(2,8); // referral code
-      const link = "https://autowala.in"; // main website, not invalid /ref/
+      const uid = Math.random().toString(36).slice(2,8); 
+      const link = "https://autowala.in";
       const text = (lang==='hi' 
-        ? `Autowala रेफरल — ₹2,000 कैशबैक पाएं!\nमेरा कोड: ${uid}\nलिंक: ${link}`
+        ? `Autowala रेफरल — ₹2,000 कैशबैक पाएं!\nमेरा कोड: ${uid}\nलिंक: ${link}` 
         : `Autowala Referral — Earn ₹2,000 cashback!\nMy code: ${uid}\nWebsite: ${link}`);
       
-      // Let user choose WhatsApp contact
       window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`,'_blank');
     });
   }
+
   if(shareSms){
     shareSms.addEventListener('click', ()=>{
       const uid = Math.random().toString(36).slice(2,8);
@@ -985,7 +987,8 @@ function initRefer(lang='en'){
       window.location.href = `sms:?body=${encodeURIComponent(body)}`;
     });
   }
-}
+}initRefer('en');
+
 
 
 
