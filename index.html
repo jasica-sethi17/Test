@@ -1,0 +1,1042 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Autowala — Vehicles, Finance & Support</title>
+  <meta name="description" content="Autowala - vehicles, EMI, finance, insurance, spare parts, WhatsApp support" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+:root{
+  --navy:#081C3A;
+  --accent:#2274F2;
+  --muted:#6B7C98;
+  --card:#FFFFFF;
+  --bg:#071732;
+  --soft-bg:#f4f8ff;
+  --radius:14px;
+  --shadow:0 10px 30px rgba(4,18,40,0.28);
+  --maxw:1100px;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial;color:var(--navy);background:linear-gradient(180deg,var(--bg),#071732);-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none}
+.container{max-width:var(--maxw);margin:0 auto;padding:16px}
+
+/* Header */
+header{position:sticky;top:0;z-index:60;background:rgba(255,255,255,0.02);backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,0.03)}
+.topbar{display:flex;align-items:center;gap:12px;justify-content:space-between;padding:12px 16px}
+.brand{display:flex;align-items:center;gap:12px}
+.logo-box{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#12c8ff);display:grid;place-items:center;color:white;font-weight:800;font-size:18px;box-shadow:var(--shadow)}
+.brand h1{margin:0;font-size:18px;color:white}
+.brand small{display:block;color:#d6e8ff;font-size:12px;margin-top:2px}
+
+/* top-right actions */
+.top-actions{display:flex;gap:8px;align-items:center}
+.lang-select{background:transparent;color:white;border-radius:999px;padding:6px 8px;border:1px solid rgba(255,255,255,0.08);font-weight:700}
+.icon-btn{display:inline-flex;align-items:center;gap:8px;padding:8px;border-radius:999px;background:transparent;color:white;border:1px solid rgba(255,255,255,0.04);cursor:pointer}
+.icon-btn svg{width:18px;height:18px;display:block}
+
+/* nav tiles */
+nav{padding:10px 16px}
+.navgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.tile{background:var(--card);padding:14px;border-radius:12px;text-align:center;border:1px solid rgba(4,18,40,0.06);box-shadow:0 8px 24px rgba(2,16,40,0.18);cursor:pointer}
+.tile .emoji{font-size:20px}
+.tile span{display:block;margin-top:8px;font-weight:700;color:var(--navy);font-size:13px}
+@media(max-width:980px){.navgrid{grid-template-columns:repeat(4,1fr)}} 
+@media(max-width:760px){.navgrid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:420px){.navgrid{grid-template-columns:repeat(3,1fr);gap:8px}.tile{padding:10px}}
+
+/* hero */
+.hero{padding:22px 16px}
+.hero-card{display:flex;gap:16px;align-items:center;background:var(--card);border-radius:18px;padding:18px;border:1px solid rgba(4,18,40,0.04);box-shadow:var(--shadow)}
+.hero h2{margin:0;font-size:20px;color:var(--navy)}
+.hero p{margin:0;color:var(--muted)}
+
+/* sections */
+main{padding-bottom:60px}
+section{scroll-margin-top:120px;padding:18px 16px}
+.section-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.section-title h3{margin:0;font-size:18px;color:var(--card);background:linear-gradient(90deg,var(--accent),#12c8ff);-webkit-background-clip:text;background-clip:text}
+.badge{font-size:12px;padding:6px 10px;border-radius:999px;background:#f1f7ff;border:1px solid rgba(30,111,232,0.08);color:var(--accent)}
+
+/* cards grid */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:980px){.cards{grid-template-columns:repeat(2,1fr)}} 
+@media(max-width:640px){.cards{grid-template-columns:1fr}}
+.card{background:var(--card);border-radius:16px;padding:12px;border:1px solid rgba(4,18,40,0.04);box-shadow:var(--shadow);overflow:hidden}
+.card .title{font-weight:800;color:var(--navy);margin-bottom:6px}
+.muted{color:var(--muted);font-size:14px}
+
+/* vehicle card */
+.vehicle-img{height:150px;object-fit:cover;border-radius:10px;margin-bottom:10px;width:100%}
+.pill{display:inline-block;padding:6px 10px;border-radius:999px;background:#f1f7ff;border:1px solid rgba(4,18,40,0.04);font-size:12px;color:var(--accent)}
+
+/* product features */
+.features-list{margin-top:8px;padding-left:16px;color:var(--muted);font-weight:600}
+.features-list li{margin-bottom:4px;font-size:14px}
+
+/* spare parts list */
+.spare-box{background:var(--card);padding:12px;border-radius:12px;border:1px solid rgba(4,18,40,0.04);box-shadow:var(--shadow)}
+.spare-search{display:flex;gap:8px;margin-bottom:10px}
+.spare-search input{flex:1;padding:10px;border-radius:10px;border:1px solid rgba(4,18,40,0.06)}
+.spare-list{max-height:260px;overflow:auto;margin:0;padding:0;list-style:none}
+.spare-list li{display:flex;justify-content:space-between;padding:8px;border-bottom:1px dashed rgba(4,18,40,0.03);font-weight:600}
+
+/* tables */
+.table{width:100%;border-collapse:separate;border-spacing:0 10px}
+.table th,.table td{padding:12px;text-align:left}
+.table tr{background:var(--card);border:1px solid rgba(4,18,40,0.04);border-radius:10px}
+
+/* faq */
+.accordion details{background:var(--card);border-radius:12px;margin:8px 0;border:1px solid rgba(4,18,40,0.04);box-shadow:var(--shadow)}
+.accordion summary{cursor:pointer;padding:14px;font-weight:700}
+.accordion p{padding:0 14px 14px;margin:0;color:var(--muted)}
+
+/* contact/lead */
+.contact-card{background:var(--card);padding:14px;border-radius:12px;border:1px solid rgba(4,18,40,0.04);box-shadow:var(--shadow);max-width:760px;margin:auto}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.form-grid .full{grid-column:1/-1}
+input, select, textarea{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(4,18,40,0.06)}
+
+/* buttons */
+.btn{appearance:none;border:0;border-radius:12px;padding:12px 16px;font-weight:700;cursor:pointer}
+.btn.primary{background:var(--accent);color:white}
+.btn.ghost{background:transparent;border:1px solid rgba(4,18,40,0.06);color:var(--navy)}
+.small{padding:8px 10px;border-radius:8px}
+
+/* footer */
+footer{margin-top:30px;padding:24px 16px;border-top:1px solid rgba(255,255,255,0.03);color:var(--muted);font-size:14px}
+.footer-grid{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.logo-small{width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,var(--accent),#12c8ff);display:grid;place-items:center;color:white;font-weight:800}
+
+/* small helper */
+.kv{display:flex;gap:8px;align-items:center}
+
+/* responsiveness improvements for mobile */
+@media(max-width:520px){
+  .topbar{padding:10px}
+  .logo-box{width:40px;height:40px;font-size:16px}
+  .brand h1{font-size:16px}
+  .brand small{font-size:11px}
+  .hero-card{flex-direction:column;align-items:flex-start}
+  .hero-card img{width:100%;max-width:220px}
+  .vehicle-img{height:120px}
+  .form-grid{grid-template-columns:1fr}
+  .btn{width:100%}
+  .navgrid{gap:8px}
+  .tile span{font-size:12px}
+  .spare-list{max-height:320px}
+}
+
+/* subtle touch when cards are long */
+.card p, .card .muted{line-height:1.4}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="topbar container">
+      <div class="brand">
+        <div class="logo-box" aria-hidden>AW</div>
+        <div>
+          <h1 data-translate="brandName">Autowala</h1>
+          <small data-translate="brandTag">Vehicles • Finance • WhatsApp support</small>
+          
+        </div>
+      </div>
+
+      <div class="top-actions" role="group" aria-label="Top actions">
+        <select id="lang-toggle" class="lang-select" aria-label="Language switch">
+          <option value="en">English</option>
+          <option value="hi">हिंदी</option>
+        </select>
+
+        <a id="call-top" class="icon-btn" href="tel:+918808050555" title="Call Autowala">
+          <!-- phone icon -->
+          <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M6.6 10.8a15.1 15.1 0 006.6 6.6l2.1-2.1a1 1 0 011.1-.2c1.2.5 2.5.8 3.9.8a1 1 0 011 1v3.5a1 1 0 01-1 1C10.1 21.6 2.4 13.9 2.4 3.6A1 1 0 013.4 2.6H6.9a1 1 0 011 1c0 1.4.3 2.7.8 3.9.2.4.1.9-.2 1.1L6.6 10.8z"/></svg>
+        </a>
+
+        <a id="wa-top" class="icon-btn" href="https://wa.me/918808050555?text=Hello%20Autowala" target="_blank" rel="noopener" title="WhatsApp Autowala">
+          <!-- WhatsApp green icon -->
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#25D366" d="M20.5 3.5A11 11 0 0012.1 1C6.4 1 1.8 5.3 1.8 10.7c0 1.9.6 3.7 1.6 5.3L1 23l6.2-1.6c1.4.4 2.8.6 4.3.6 5.6 0 10.2-4.3 10.2-9.6 0-2.6-1.1-5-3-6.9zM12.1 19.5c-1.3 0-2.5-.2-3.6-.6l-.3-.1-3.6.9 1-3.4-.2-.3A7.6 7.6 0 014 10.7c0-4 4.2-7.2 8.1-7.2 4 0 8.1 3.2 8.1 7.2 0 4-4.1 7.2-8.1 7.2z"/></svg>
+        </a>
+
+        <a id="fb-top" class="icon-btn" href="https://www.facebook.com/Autowala" target="_blank" rel="noopener" title="Facebook Autowala">
+          <!-- modern Facebook icon -->
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#1877F2" d="M22 12a10 10 0 10-11.5 9.9v-7H8v-3h2.5V9.5c0-2.5 1.5-3.9 3.7-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.1 0-1.5.7-1.5 1.4V12H19l-.5 3h-2.3v7A10 10 0 0022 12z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="container" aria-label="Quick menu">
+      <div class="navgrid">
+        <div class="tile" data-href="#products"><div class="emoji">🚗</div><span data-translate="navVehicles">Vehicles</span></div>
+        <div class="tile" data-href="#spares"><div class="emoji">🔧</div><span data-translate="navSpares">Spare Parts</span></div>
+        <div class="tile" data-href="#finance"><div class="emoji">🏦</div><span data-translate="navFinance">Finance</span></div>
+        <div class="tile" data-href="#insurance"><div class="emoji">🛡️</div><span data-translate="navInsurance">Insurance</span></div>
+        <div class="tile" data-href="#offers"><div class="emoji">🎁</div><span data-translate="navOffers">Offers</span></div>
+        <div class="tile" data-href="#contact"><div class="emoji">📍</div><span data-translate="navBranches">Branches</span></div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <!-- hero -->
+    <section class="hero" id="home">
+      <div class="hero-card">
+        <div style="flex:1">
+          <h2 data-translate="heroTitle">Welcome to Autowala</h2>
+          <p class="muted" data-translate="heroCopy">Lucknow’s Trusted EV Dealer for 15+ Years</p>
+          <p id="dealerText">Become a sub-dealer for EV: contact <a href="mailto:autowala2018@gmail.com">autowala2018@gmail.com</a> or call <a href="tel:+916389907777">+91 6389907777</a></p>
+          <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+            <a class="btn primary" href="#products" data-translate="browse">Browse Vehicles</a>
+            <a class="btn ghost" href="#lead" data-translate="requestCall">Contact Us</a>
+            <nav>
+              <!-- your existing links -->
+              <a class="btn ghost" href="https://piaggio-cv.co.in/electric/ape-e-city-fx-max-fixed/" target="_blank">
+                Manufacturer Website
+              </a>
+            </nav>
+          </div>
+        </div>
+        <div style="width:160px;text-align:center">
+          <img src="Piaggo.jpeg" alt="car" style="width:140px;border-radius:12px;box-shadow:var(--shadow)">
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCTS -->
+    <section id="products">
+      <div class="section-title">
+        <h3 data-translate="vehicles">Vehicles</h3>
+        <span class="badge" data-translate="pick">Pick a vehicle to view details</span>
+      </div>
+
+      <div class="cards" id="vehicle-list">
+        <!-- vehicle cards rendered by JS -->
+      </div>
+    </section>
+
+    <!-- EMI Calculator (below vehicles) -->
+    <section id="emi">
+      <div class="section-title">
+        <h3 data-translate="emiCalculator">EMI Calculator</h3>
+        <span class="muted" data-translate="emiHint">Select vehicle or enter price → change down payment, tenure, interest</span>
+      </div>
+
+      <div class="card">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:end">
+          <div>
+            <label style="font-size:13px;color:var(--muted)" data-translate="vehicleOrPrice">Vehicle / Price</label>
+            <select id="emi-product" style="width:100%;padding:10px;border-radius:10px;border:1px solid rgba(4,18,40,0.06)">
+              <option value="">{{select}}</option>
+            </select>
+            <div style="margin-top:8px" class="muted" data-translate="orEnter">Or enter price manually</div>
+            <input id="emi-price" placeholder="₹ price" style="margin-top:6px;padding:10px;border-radius:10px;border:1px solid rgba(4,18,40,0.06)" />
+          </div>
+          <div>
+            <label style="font-size:13px;color:var(--muted)" data-translate="downPayment">Down payment (₹)</label>
+            <input id="emi-dp" type="number" value="20000" style="padding:10px;border-radius:10px;border:1px solid rgba(4,18,40,0.06)" />
+            <label style="font-size:13px;color:var(--muted);margin-top:8px" data-translate="tenure">Tenure (months)</label>
+            <input id="emi-tenure" type="number" value="36" min="6" max="84" style="padding:10px;border-radius:10px;border:1px solid rgba(4,18,40,0.06)" />
+            <label style="font-size:13px;color:var(--muted);margin-top:8px" data-translate="interest">Interest (%)</label>
+            <input id="emi-rate" type="number" value="11" step="0.1" style="padding:10px;border-radius:10px;border:1px solid rgba(4,18,40,0.06)" />
+          </div>
+        </div>
+
+        <div style="display:flex;gap:12px;align-items:center;margin-top:12px;flex-wrap:wrap">
+          <div style="flex:1;padding:12px;border-radius:10px;background:#f1f7ff;border:1px solid rgba(4,18,40,0.04)">
+            <div style="font-size:13px;color:var(--muted)" data-translate="monthlyEmi">Monthly EMI</div>
+            <div id="emi-result" style="font-weight:800;font-size:18px;margin-top:6px">—</div>
+          </div>
+          <div style="flex:1;padding:12px;border-radius:10px;background:#fff;border:1px solid rgba(4,18,40,0.04)">
+            <div style="font-size:13px;color:var(--muted)" data-translate="loanAmount">Loan Amount</div>
+            <div id="emi-loan" style="font-weight:800;font-size:18px;margin-top:6px">—</div>
+          </div>
+          <div>
+            <button id="emi-calc-btn" class="btn primary" data-translate="calculate">Calculate EMI</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SPARE PARTS -->
+    <section id="spares">
+      <div class="section-title">
+        <h3 data-translate="spareParts">Spare Parts</h3>
+      </div>
+    
+      <div class="spare-box">
+        <p class="muted" data-translate="spareMore">Please call to enquire for spare parts.</p>
+        <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+          <a class="btn ghost" href="tel:+917007077645">📞 Call for Spare Parts</a>
+          <a class="btn primary" href="tel:+919682812238">📞 Call for Service</a>
+          <a class="btn ghost" style="color:red;font-weight:bold;" href="tel:+919911112222">🚨 SOS</a>
+        </div>
+      </div>
+    </section>
+    <!-- FINANCE -->
+    <section id="finance">
+      <div class="section-title">
+        <h3 data-translate="finance">Finance Partners</h3>
+        <span class="muted" data-translate="financier">Final approval & precise rate depend on financier and documents.</span>
+      </div>
+
+      <div class="card">
+        <div id="finance-desc" class="muted">We work with multiple trusted finance partners to make ownership easy.</div>
+      </div>
+
+      <div id="finance-cards" class="cards-container cards" style="margin-top:12px"></div>
+    </section>
+
+    <section id="insurance">
+      <div class="section-title">
+        <h3 data-translate="insurance">Insurance</h3>
+        <span class="muted" data-translate="insuranceHint">Approximate — please contact for exact quote</span>
+      </div>
+
+      <div class="cards" id="insurance-cards"></div>
+    </section>
+
+    <!-- OFFERS / REFER -->
+    <section id="offers">
+      <div class="section-title">
+        <h3 data-translate="offers">Offers</h3>
+        <span class="badge" data-translate="earnBadge">Earn ₹2,000 cashback</span>
+      </div>
+
+      <div class="card">
+        <div class="title" data-translate="referTitle">Refer & Earn</div>
+        <p class="muted" data-translate="referCopy">Share your referral. When someone buys and completes a purchase, you get <strong>₹2,000 cashback</strong>.</p>
+        <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+          <button id="share-wa" class="btn primary" data-translate="shareWhatsApp">Share on WhatsApp</button>
+          <button id="share-sms" class="btn ghost" data-translate="shareSMS">Share via SMS</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section id="reviews">
+      <div class="section-title">
+        <h3 data-translate="reviews">Main Branch</h3>
+        <span class="muted" data-translate="realBuyers">Real buyers</span>
+      </div>
+      <div class="cards" id="reviews-cards"></div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <div class="section-title">
+        <h3 data-translate="faq">Documents needed for Finance</h3>
+      </div>
+
+      <div class="accordion">
+        <details open>
+          <summary data-translate="customerDocsTitle">Customer Documents 👇🏻</summary>
+          <p class="muted" style="margin-top:8px" data-translate="customerDocs">• Aadhar Card<br>• PAN Card<br>• Driving Licence<br>• Electricity Bill / Rent Agreement (Updated)<br>• Bank Passbook (Updated)<br>• 4 Passport size Photos</p>
+        </details>
+        <details>
+          <summary data-translate="coApplicantTitle">Co-applicant (सह-आवेदक) Documents 👇🏻</summary>
+          <p class="muted" style="margin-top:8px" data-translate="coApplicantDocs">• Aadhar Card<br>• PAN Card / Voter ID Card<br>• 2 Passport size Photos</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- BRANCHES -->
+    <section id="contact">
+      <div class="section-title">
+        <h3 data-translate="branches">Other Branches</h3>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        
+
+        <div class="card contact-card">
+          <div class="title">Autowala - Dubagga</div>
+          <p class="muted" data-translate="addr1">SBI Road, Chander Nagar, Dubagga, Lucknow - 226005</p>
+          <div style="margin-top:8px;display:flex;gap:8px">
+            <a class="btn ghost" id="call-Dubagga" href="#">📞 Call</a>
+            <a class="btn primary" id="wa-Dubagga" href="#">💬 WhatsApp</a>
+          </div>
+          <div style="margin-top:10px">
+            <iframe id="map-Dubagga" src="" style="border:0;width:100%;height:180px;border-radius:10px" loading="lazy"></iframe>
+          </div>
+        </div>
+
+
+        <div class="card contact-card">
+          <div class="title">Autowala - Mohanlalganj</div>
+          <p class="muted" data-translate="addr1">SBI Road, Chander Nagar, Mohanlalganj, Lucknow - 226005</p>
+          <div style="margin-top:8px;display:flex;gap:8px">
+            <a class="btn ghost" id="call-Mohanlalganj" href="#">📞 Call</a>
+            <a class="btn primary" id="wa-Mohanlalganj" href="#">💬 WhatsApp</a>
+          </div>
+          <div style="margin-top:10px">
+            <iframe id="map-Mohanlalganj" src="" style="border:0;width:100%;height:180px;border-radius:10px" loading="lazy"></iframe>
+          </div>
+        </div>
+
+
+        <div class="card contact-card">
+          <div class="title">Autowala - Barabanki</div>
+          <p class="muted" data-translate="addr1">SBI Road, Chander Nagar, Barabanki, Lucknow - 226005</p>
+          <div style="margin-top:8px;display:flex;gap:8px">
+            <a class="btn ghost" id="call-Barabanki" href="#">📞 Call</a>
+            <a class="btn primary" id="wa-Barabanki" href="#">💬 WhatsApp</a>
+          </div>
+          <div style="margin-top:10px">
+            <iframe id="map-Barabanki" src="" style="border:0;width:100%;height:180px;border-radius:10px" loading="lazy"></iframe>
+          </div>
+        </div>
+        
+        <div class="card contact-card">
+          <div class="title">Autowala - Bachrawan</div>
+          <p class="muted" data-translate="addr1">SBI Road, Chander Nagar, Bachrawan, Lucknow - 226005</p>
+          <div style="margin-top:8px;display:flex;gap:8px">
+            <a class="btn ghost" id="call-Bachrawan" href="#">📞 Call</a>
+            <a class="btn primary" id="wa-Bachrawan" href="#">💬 WhatsApp</a>
+          </div>
+          <div style="margin-top:10px">
+            <iframe id="map-Bachrawan" src="" style="border:0;width:100%;height:180px;border-radius:10px" loading="lazy"></iframe>
+          </div>
+        </div>
+
+
+      </div>
+    </section>
+
+    <!-- LEAD FORM -->
+    <section id="lead">
+      <div class="section-title">
+        <h3 data-translate="contactForm">Contact / Lead Form</h3>
+        <span class="muted" data-translate="leadHint">Send your details on WhatsApp or request a callback</span>
+      </div>
+
+      <div class="contact-card">
+        <form id="lead-form">
+          <div class="form-grid">
+            <div>
+              <label style="font-size:13px;color:var(--muted)" data-translate="yourName">Your name</label>
+              <input name="name" required placeholder="Rahul / Seema" />
+            </div>
+            <div>
+              <label style="font-size:13px;color:var(--muted)" data-translate="phone">Phone (WhatsApp)</label>
+              <input name="phone" required placeholder="918808050555" inputmode="numeric" pattern="[0-9]{10}" />
+            </div>
+            <div>
+              <label style="font-size:13px;color:var(--muted)" data-translate="chooseBranch">Choose branch</label>
+              <!-- name added so FormData includes branch -->
+              <select id="branch" name="branch">
+              <option value="">Select Branch</option>
+              <option value="branch1">SBI Road, Chander Nagar</option>
+              <option value="branch2">Kanpur Bypass Road, Dubagga</option>
+              </select>
+            </div>
+            <div>
+              <label style="font-size:13px;color:var(--muted)" data-translate="chooseProduct">Choose product (optional)</label>
+              <select name="product" id="product-select"></select>
+            </div>
+          </div>
+
+          <label style="margin-top:10px;font-size:13px;color:var(--muted)" data-translate="message">Message (optional)</label>
+          <input name="message" placeholder="I want test drive / finance details" />
+
+          <div style="display:flex;gap:10px;margin-top:10px;flex-wrap:wrap">
+            <button class="btn primary" id="send-wa" type="submit">💬 <span data-translate="sendOnWa">Send on WhatsApp</span></button>
+            <button class="btn ghost" id="req-callback" type="button">📞 <span data-translate="requestCallback">Request Callback</span></button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+  </main>
+  
+  
+  <footer>
+    <div class="container footer-grid">
+      <div style="display:flex;gap:12px;align-items:center">
+        <div class="logo-small">AW</div>
+        <div>
+          <div style="font-weight:700;color:var(--card)" data-translate="autowala">Autowala</div>
+          <div class="muted" style="font-size:13px" data-translate="footerCopy">Simple vehicles • Honest pricing • WhatsApp support</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:12px;align-items:center">
+        <a id="footer-wa" href="https://wa.me/918808050555?text=Hello%20Autowala" aria-label="WhatsApp"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:26px;height:26px"><path fill="#25D366" d="M20.5 3.5A11 11 0 0012.1 1C6.4 1 1.8 5.3 1.8 10.7c0 1.9.6 3.7 1.6 5.3L1 23l6.2-1.6c1.4.4 2.8.6 4.3.6 5.6 0 10.2-4.3 10.2-9.6 0-2.6-1.1-5-3-6.9zM12.1 19.5c-1.3 0-2.5-.2-3.6-.6l-.3-.1-3.6.9 1-3.4-.2-.3A7.6 7.6 0 014 10.7c0-4 4.2-7.2 8.1-7.2 4 0 8.1 3.2 8.1 7.2 0 4-4.1 7.2-8.1 7.2z"/></svg></a>
+        <a id="footer-fb" href="https://www.facebook.com/Autowala" aria-label="Facebook"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:26px;height:26px"><path fill="#1877F2" d="M22 12a10 10 0 10-11.5 9.9v-7H8v-3h2.5V9.5c0-2.5 1.5-3.9 3.7-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.1 0-1.5.7-1.5 1.4V12H19l-.5 3h-2.3v7A10 10 0 0022 12z"/></svg></a>
+        <a id="footer-call" href="#" aria-label="Call"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:26px;height:26px;fill:#0b2a52"><path d="M6.6 10.8a15.1 15.1 0 006.6 6.6l2.1-2.1a1 1 0 011.1-.2c1.2.5 2.5.8 3.9.8a1 1 0 011 1v3.5a1 1 0 01-1 1C10.1 21.6 2.4 13.9 2.4 3.6A1 1 0 013.4 2.6H6.9a1 1 0 011 1c0 1.4.3 2.7.8 3.9.2.4.1.9-.2 1.1L6.6 10.8z"/></svg></a>
+      </div>
+    </div>
+    <div class="container" style="margin-top:12px;font-size:13px;color:var(--muted)">© <span id="year"></span> Autowala</div>
+  </footer>
+
+<script>
+/* -----------------------
+   DATA (edit these values)
+   ----------------------- */
+const DATA = {
+  whatsappNumber: '918808050555', // include country code without +
+  company: 'Autowala',
+  vehicles: [
+    // Model A - full specs (as requested)
+    { id:'m1', name_en:'Model A', name_hi:'मॉडल A', price:null, img:'Piaggo.jpeg',
+      features_en:[
+        'Vehicle Category – L5M - Auto',
+        'Product Battery Type & Voltage – Lithium Ion, 51.2 V',
+        'Product Battery Capacity – Rated: 8 kWh',
+        'Product Max Power – 7.40 kW @ 3500 RPM',
+        'Product Max Torque – 30 Nm',
+        'Product Seating Capacity – Driver + 3 Passengers',
+        'Product Gradeability – 19%',
+        'Product Typical Driving Range (On Road) – 155 ± 5 Kms'
+      ],
+      features_hi:[
+        'वाहन श्रेणी – L5M - ऑटो',
+        'बैटरी प्रकार और वोल्टेज – लिथियम आयन, 51.2 V',
+        'बैटरी क्षमता – रेटेड: 8 kWh',
+        'मैक्स पावर – 7.40 kW @ 3500 RPM',
+        'मैक्स टॉर्क – 30 Nm',
+        'सीटिंग क्षमता – चालक + 3 यात्री',
+        'ग्रेडएबिलिटी – 19%',
+        'टिपिकल ड्राइविंग रेंज (ऑन रोड) – 155 ± 5 किमी'
+      ]},
+    // Model B - placeholder
+    { id:'m2', name_en:'Model B', name_hi:'मॉडल B', price:null, img:'piaggo_ultra.png',
+      features_en:[
+        'Vehicle Category – L5M - Auto',
+        'Product Battery Type & Voltage – Lithium Ion, 51.2 V',
+        'Product Battery Capacity – Rated: 10.2 kWh',
+        'Product Max Power – 9.5 kW @ 2500 RPM',
+        'Product Max Torque – 45 Nm',
+        'Product Seating Capacity – Driver + 3 Passengers',
+        'Product Gradeability – 28%',
+        'Product Typical Driving Range (On Road) – 205 ± 5 Kms'], 
+      features_hi:[
+        'वाहन श्रेणी – L5M - ऑटो',
+        'बैटरी प्रकार और वोल्टेज – लिथियम आयन, 51.2 V',
+        'बैटरी क्षमता – रेटेड: 10.2 kWh',
+        'मैक्स पावर – 9.5 kW @ 2500 RPM',
+        'मैक्स टॉर्क – 45 Nm',
+        'सीटिंग क्षमता – चालक + 3 यात्री',
+        'ग्रेडएबिलिटी – 28%',
+        'टिपिकल ड्राइविंग रेंज (ऑन रोड) – 205 ± 5 किमी'
+      ]}
+  ],
+  spares: [ /* kept for future - unused by current UI */ ],
+ finance:[
+  {
+    name_en: 'Ascend Bizcap Pvt Ltd',
+    name_hi: 'एसेंड बिजकैप प्रा. लि.',
+    intro: 'Ascend Bizcap Pvt Ltd — a trusted finance partner.',
+    website: 'https://www.ascendcap.in/',  // found via Ascend Capital link :contentReference[oaicite:0]{index=0}
+    logo: 'Ascendlogo.png',
+    phone: '+919794724963'
+  },
+  {
+    name_en: 'Lok Suvidha',
+    name_hi: 'लोक सुविधा',
+    intro: 'Lok Suvidha — instant personal & vehicle loans.',
+    website: 'https://loksuvidha.com',  // official website found :contentReference[oaicite:1]{index=1}
+    logo: 'Loksuvidhalogo.png',
+    phone: '+919209058000'  // official contact found on their site listing :contentReference[oaicite:2]{index=2}
+  },
+  {
+    name_en: 'Cholamandalam Finance',
+    name_hi: 'चोलामंडलम फाइनेंस',
+    intro: 'Cholamandalam Finance — established NBFC.',
+    website: 'https://www.cholamandalam.com',
+    logo: 'cholamandalam_logo.png',
+    phone: '+917408107453'
+  },
+  {
+    name_en: 'Paisa Lo',
+    name_hi: 'पैसा लो',
+    intro: 'Paisa Lo — quick personal loans.',
+    website: '#',
+    logo: 'paisalo_logo.png',
+    phone: '+919695806218'
+  },
+  {
+    name_en: 'Turno',
+    name_hi: 'टरनो',
+    intro: 'Turno — flexible finance solutions.',
+    website: '#',
+    logo: 'turno_logo.png',
+    phone: '+916386884860'
+  },
+  {
+    name_en: 'TVS Credit',
+    name_hi: 'टीवीएस क्रेडिट',
+    intro: 'TVS Credit — auto finance specialist.',
+    website: 'https://www.tvscredit.com',
+    logo: 'TVSlogo.png',
+    phone: '+917986697474'
+  },
+  {
+    name_en: 'Kamal Finance',
+    name_hi: 'कमल फाइनेंस',
+    intro: 'Kamal Finance — trusted in local markets.',
+    website: '#',
+    logo: 'kamal_finance_logo.png',
+    phone: '+916393078550'
+  },
+  {
+    name_en: 'IDFC First Bank',
+    name_hi: 'IDFC फर्स्ट बैंक',
+    intro: 'IDFC First Bank — full banking & finance.',
+    website: 'https://www.idfcfirstbank.com',
+    logo: 'IDFClogo.png',
+    phone: '+917618818875'
+  },
+  {
+    name_en: 'Ecofy',
+    name_hi: 'इकोफाई',
+    intro: 'Ecofy — financial solutions for modern needs.',
+    website: '#',
+    logo: 'ecofy_logo.png',
+    phone: '+918004073676'
+  },
+  {
+    name_en: 'Vidyuttech',
+    name_hi: 'विद्युतटेक',
+    intro: 'Vidyuttech — tech-enabled financing.',
+    website: '#',
+    logo: 'vidyuttech_logo.png',
+    phone: '+917651836746'
+  },
+  {
+    name_en: 'Bike Bazaar',
+    name_hi: 'बाइक बाज़ार',
+    intro: 'Bike Bazaar — two-wheeler finance specialist.',
+    website: '#',
+    logo: 'bike_bazaar_logo.png',
+    phone: '+916390442241'
+  },
+  {
+    name_en: 'Hinduja',
+    name_hi: 'हिंदुजा',
+    intro: 'Hinduja — established finance services.',
+    website: 'https://hindujaleylandfinance.com/',
+    logo: 'Hindujalogo.png',
+    phone: '+918810704205'
+  },
+  {
+    name_en: 'Bajaj Finance',
+    name_hi: 'बजाज फाइनेंस',
+    intro: 'Bajaj Finance — leading NBFC.',
+    website: 'https://www.bajajfinserv.in',
+    logo: 'Bajajlogo.png',
+    phone: '+918810704205'
+  },
+  {
+    name_en: 'Ckars',
+    name_hi: 'सीकार्स',
+    intro: 'Ckars — local vehicle finance.',
+    website: '#',
+    logo: 'ckars_logo.png',
+    phone: '+919555698704'
+  },
+  {
+    name_en: 'Shriram Finance',
+    name_hi: 'श्रीराम फाइनेंस',
+    intro: 'Shriram Finance — trusted auto finance.',
+    website: 'https://www.shriramfinance.in/',
+    logo: 'Shriramlogo.png',
+    phone: '+919794979901'
+  },
+  {
+    name_en: 'VPay',
+    name_hi: 'वीपे',
+    intro: 'VPay — digital payments & finance.',
+    website: '#',
+    logo: 'vpay_logo.png',
+    phone: '+91872649630'
+  }
+],
+
+  insurance:[
+    {name_en:'GoDigit', name_hi:'GoDigit', note_en:'Approx. price — please contact for exact quote by model', note_hi:'अनुमानित मूल्य — सटीक कोट के लिए संपर्क करें', website:'https://www.godigit.com/', logo:'go_digit_logo.svg'}
+  ],
+  reviews: [ /* kept for fallback - we will embed Google reviews instead */ ],
+  branches:[
+    {id:'b1', name_en:'Barabanki', name_hi:'आलमबाग', phone:'+918808188888', address_en:'551 Ka/238 SBI Road, Chander Nagar, Alambagh, Lucknow-226005', address_hi:'551 238 रोड, चंदेर नगर, आलमबाग, लखनऊ-226005', maps:'https://www.google.com/maps?q=SBI+Road+Chander+Nagar+Alambagh+Lucknow&output=embed'},
+    {id:'b2', name_en:'Dubagga', name_hi:'डुबग्गा', phone:'+917052959999', address_en:'Kanpur Bypass Road, Near Lucknow Golden Hospital, Dubagga, Lucknow', address_hi:'कानपुर बाईपास रोड, निकट लखनऊ गोल्डन हॉस्पिटल, डुबग्गा, लखनऊ', maps:'https://www.google.com/maps?q=Kanpur+Bypass+Road+Lucknow&output=embed'},
+    {id:'b3', name_en:'Mohanlalganj', name_hi:'डुबग्गा', phone:'+917052959999', address_en:'Kanpur Bypass Road, Near Lucknow Golden Hospital, Dubagga, Lucknow', address_hi:'कानपुर बाईपास रोड, निकट लखनऊ गोल्डन हॉस्पिटल, डुबग्गा, लखनऊ', maps:'https://www.google.com/maps?q=Kanpur+Bypass+Road+Lucknow&output=embed'},
+    {id:'b4', name_en:'Bachrawan', name_hi:'डुबग्गा', phone:'+917052959999', address_en:'Kanpur Bypass Road, Near Lucknow Golden Hospital, Dubagga, Lucknow', address_hi:'कानपुर बाईपास रोड, निकट लखनऊ गोल्डन हॉस्पिटल, डुबग्गा, लखनऊ', maps:'https://www.google.com/maps?q=Kanpur+Bypass+Road+Lucknow&output=embed'}
+    
+
+  ],
+  referralBase:'https://autowala1.in/'
+};
+
+/* -------------------------
+   TRANSLATION KEYS (for static labels)
+   ------------------------- */
+const TRANSLATIONS = {
+  en: {
+    brandName: 'Autowala',
+    brandTag: 'Lucknow ki Sawari, Chalti Bijli ki Dhaari',
+    navVehicles: 'Vehicles', navSpares:'Spare Parts', navFinance:'Finance', navInsurance:'Insurance', navOffers:'Offers', navBranches:'Branches',
+    heroTitle:'Welcome to Autowala', heroCopy:'Simple process • Clear pricing • Direct WhatsApp help', browse:'Browse Vehicles', requestCall:'Request Callback',
+    vehicles:'Vehicles', pick:'Pick a vehicle to view details',
+    emiCalculator:'EMI Calculator', emiHint:'Select vehicle or enter price → change down payment, tenure, interest',
+    vehicleOrPrice:'Vehicle / Price', orEnter:'Or enter price manually', downPayment:'Down payment (₹)', tenure:'Tenure (months)', interest:'Interest (%)',
+    monthlyEmi:'Monthly EMI', loanAmount:'Loan Amount', calculate:'Calculate EMI',
+    spareParts:'Spare Parts', spareHint:'Search parts or contact us for others', spareMore:'We have spare parts. Please call to enquire.', spareNotFound:'No matching spare found. Contact us to confirm availability.',
+    finance:'Finance Partners', fileCharge:'File charge shown', interest:'Interest (indicative)', website:'Website / Logo', financeNote:'Final approval & precise rate depend on financier and documents.', financeDesc:'We work with multiple financiers to offer competitive EMI plans. Exact rate depends on profile and documents. Contact us for personalized quotes.',
+    insurance:'Insurance', insuranceHint:'Approximate — please contact for exact quote',
+    offers:'Offers & Refer', earnBadge:'Earn ₹2,000 cashback', referTitle:'Refer & Earn', referCopy:'Share your referral. When someone buys and completes a purchase, you get ₹2,000 cashback.',
+    shareWhatsApp:'Share on WhatsApp', shareSMS:'Share via SMS',
+    reviews:'Main Branch', realBuyers:'',
+    faq:'Documents needed for Finance', customerDocsTitle:'Customer Documents 👇🏻', customerDocs:'• Aadhar Card<br>• PAN Card<br>• Driving Licence<br>• Electricity Bill / Rent Agreement (Updated)<br>• Bank Passbook (Updated)<br>• 4 Passport size Photos',
+    coApplicantTitle:'Co-applicant (सह-आवेदक) Documents 👇🏻', coApplicantDocs:'• Aadhar Card<br>• PAN Card / Voter ID Card<br>• 2 Passport size Photos',
+    branches:'Other Branches', addr1:'SBI Road, Chander Nagar, Alambagh, Lucknow - 226005', addr2:'Kanpur Bypass Road, Near Lucknow Golden Hospital, Dubagga, Lucknow',addr2:'Kanpur Bypass Road, Near Lucknow Golden Hospital, Dubagga, Lucknow',
+    contactForm:'Contact / Lead Form', leadHint:'Send your details on WhatsApp or request a callback',
+    yourName:'Your name', phone:'Phone (WhatsApp)', chooseBranch:'Choose branch', chooseProduct:'Choose product (optional)', message:'Message (optional)', sendOnWa:'Send on WhatsApp', requestCallback:'Request Callback',
+    sparePartsLabel:'Spare Parts', spareSearchPlaceholder:'Search spare part (e.g., Brake Pad)',
+    autowala:'Autowala', footerCopy:'Simple vehicles • Honest pricing • WhatsApp support',
+    select:'— Select vehicle —'
+  },
+  hi: {
+    brandName: 'ऑटोवाला',
+    brandTag: 'वाहन • फाइनेंस • WhatsApp सहायता',
+    navVehicles:'वाहन', navSpares:'स्पेयर पार्ट्स', navFinance:'फाइनेंस', navInsurance:'बीमा', navOffers:'ऑफ़र', navBranches:'शाखाएँ',
+    heroTitle:'ऑटोवाला में आपका स्वागत है', heroCopy:'सरल प्रक्रिया • स्पष्ट कीमतें • डायरेक्ट WhatsApp सहायता', browse:'वाहन देखें', requestCall:'कॉल का अनुरोध',
+    vehicles:'वाहन', pick:'विवरण देखने के लिए वाहन चुनें',
+    emiCalculator:'ईएमआई कैलकुलेटर', emiHint:'वाहन चुनें या कीमत दर्ज करें → डाउन पेमेंट, अवधि, ब्याज बदलें',
+    vehicleOrPrice:'वाहन / कीमत', orEnter:'या मैन्युअल रूप से कीमत दर्ज करें', downPayment:'डाउन पेमेंट (₹)', tenure:'अवधि (महीने)', interest:'ब्याज (%)',
+    monthlyEmi:'मासिक EMI', loanAmount:'लोन राशि', calculate:'EMI निकालें',
+    spareParts:'स्पेयर पार्ट्स', spareHint:'पार्ट खोजें या अन्य के लिए हमसे संपर्क करें', spareMore:'हमारे पास स्पेयर पार्ट्स हैं। कृपया कॉल करके पूछताछ करें।', spareNotFound:'मिलने वाला पार्ट नहीं। संपर्क करें।',
+    finance:'फाइनेंस पार्टनर', fileCharge:'फ़ाइल चार्ज दिखाया गया है', interest:'ब्याज (संकेतात्मक)', website:'वेबसाइट / लोगो', financeNote:'दरें संकेतात्मक हैं। अंतिम स्वीकृति और सटीक दरें वित्तदाता और दस्तावेज़ों पर निर्भर करती हैं।', financeDesc:'हम कई वित्तपोषकों के साथ काम करते ताकि प्रतिस्पर्धी EMI योजनाएँ ऑफ़र कर सकें। सटीक दर प्रोफ़ाइल और दस्तावेज़ों पर निर्भर करती है। व्यक्तिगत कोट के लिए हमसे संपर्क करें।',
+    insurance:'बीमा', insuranceHint:'अनुमानित — कृपया सटीक कोट के लिए संपर्क करें',
+    offers:'ऑफ़र और रेफर', earnBadge:'₹2,000 कैशबैक कमाएँ', referTitle:'रेफर करें और कमाएं', referCopy:'रेफरल शेयर करें। जब कोई खरीदता है और पूरा करता है, तो आपको ₹2,000 कैशबैक मिलता है।',
+    shareWhatsApp:'WhatsApp पर शेयर करें', shareSMS:'SMS के जरिए शेयर करें',
+    reviews:'रिव्यू', realBuyers:'असली खरीदार',
+    faq:'फाइनेंस के लिए आवश्यक दस्तावेज़', customerDocsTitle:'ग्राहक दस्तावेज़ 👇🏻', customerDocs:'• आधार कार्ड<br>• पैन कार्ड<br>• ड्राइविंग लाइसेंस<br>• बिजली बिल / किराये का समझौता (अपडेटेड)<br>• बैंक पासबुक (अपडेटेड)<br>• 4 पासपोर्ट साइज फोटो',
+    coApplicantTitle:'सह-आवेदक दस्तावेज़ 👇🏻', coApplicantDocs:'• आधार कार्ड<br>• पैन कार्ड / वोटर आईडी<br>• 2 पासपोर्ट साइज फोटो',
+    branches:'शाखाएँ', addr1:'SBI रोड, चन्देर नगर, आलमबाग, लखनऊ - 226005', addr2:'कानपुर बाईपास रोड, निकट लखनऊ गोल्डन हॉस्पिटल, डुबग्गा, लखनऊ',
+    contactForm:'संपर्क / लीड फॉर्म', leadHint:'अपनी जानकारी WhatsApp पर भेजें या कॉल बैक का अनुरोध करें',
+    yourName:'आपका नाम', phone:'फोन (WhatsApp)', chooseBranch:'शाखा चुनें', chooseProduct:'उत्पाद चुनें (वैकल्पिक)', message:'संदेश (वैकल्पिक)', sendOnWa:'WhatsApp पर भेजें', requestCallback:'कॉल का अनुरोध करें',
+    sparePartsLabel:'स्पेयर पार्ट्स', spareSearchPlaceholder:'स्पेयर पार्ट खोजें (उदा., ब्रेक पैड)',
+    autowala:'ऑटोवाला', footerCopy:'सरल वाहन • ईमानदार मूल्य • WhatsApp सहायता',
+    select:'— वाहन चुनें —'
+  }
+};
+
+/* -------------------------
+   UTILS
+   ------------------------- */
+const el = id => document.getElementById(id);
+const fmtINR = n => n || n===0 ? new Intl.NumberFormat('en-IN',{style:'currency',currency:'INR',maximumFractionDigits:0}).format(n) : null;
+
+/* -------------------------
+   RENDER FUNCTIONS
+   ------------------------- */
+function renderVehicles(lang='en'){
+  const box = el('vehicle-list'); box.innerHTML='';
+  DATA.vehicles.forEach(v=>{
+    const name = lang === 'hi' ? v.name_hi : v.name_en;
+    const features = lang === 'hi' ? v.features_hi : v.features_en;
+    const card = document.createElement('div'); card.className='card';
+    // keep price display simple — contact for price when price is null
+    const priceHtml = v.price || v.price===0 ? `<div class="muted">${ (lang==='hi') ? 'कीमत' : 'Price' }: <strong>${fmtINR(v.price)}</strong></div>` : '';
+    card.innerHTML = `
+      <img class="vehicle-img" src="${v.img}" alt="${name}">
+      <div class="title">${name}</div>
+      ${priceHtml}
+      <ul class="features-list">${(features||[]).map(f=>`<li>${f}</li>`).join('')}</ul>
+      <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+        <a class="btn ghost" href="tel:${DATA.branches[0].phone}">📞 ${(lang==='hi')? 'कॉल':'Call'}</a>
+        <a class="btn primary" href="https://wa.me/${DATA.whatsappNumber}?text=${encodeURIComponent((lang==='hi'?'जानकारी चाहिए: ':'Inquiry: ')+name)}" target="_blank">💬 WhatsApp</a>
+        <a class="btn ghost" href="#lead">${(lang==='hi')? 'पूछताछ':'Enquire'}</a>
+      </div>
+    `;
+    box.appendChild(card);
+  });
+
+  // populate emi select & product select
+  const emiSel = el('emi-product'); const psel = el('product-select');
+  if(emiSel){ emiSel.innerHTML = `<option value="">${TRANSLATIONS[lang].select}</option>`; }
+  if(psel){ psel.innerHTML = `<option value="General Inquiry">${ (lang==='hi') ? 'सामान्य पूछताछ' : 'General Inquiry' }</option>`; }
+  DATA.vehicles.forEach(v=>{
+    if(emiSel) emiSel.insertAdjacentHTML('beforeend', `<option value="${v.price || ''}">${ (lang==='hi')? v.name_hi : v.name_en }${ v.price ? ' — ' + (fmtINR(v.price)||'') : '' }</option>`);
+    if(psel) psel.insertAdjacentHTML('beforeend', `<option>${ (lang==='hi')? v.name_hi : v.name_en }</option>`);
+  });
+}
+
+function renderSpares(lang='en', list=null){
+  // kept for future use; currently UI no longer renders a spare-list element
+  const ul = el('spare-list'); if(!ul) return;
+  ul.innerHTML='';
+  const items = list || DATA.spares;
+  items.forEach(s=>{
+    const name = lang==='hi' ? s.name_hi : s.name_en;
+    const li = document.createElement('li');
+    const priceTxt = s.price || s.price===0 ? fmtINR(s.price) : (lang==='hi' ? 'मूल्य पूछें' : 'Contact for price');
+    li.innerHTML = `<span>${name}</span><strong>${priceTxt}</strong>`;
+    ul.appendChild(li);
+  });
+}
+
+function renderFinance(lang = 'en') {
+  const container = document.getElementById('finance-cards');
+  container.innerHTML = '';
+  
+  DATA.finance.forEach(f => {
+    const name = lang === 'hi' && f.name_hi ? f.name_hi : f.name_en;
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.style.display = 'flex';
+    card.style.flexDirection = 'column';
+    card.style.alignItems = 'center';
+    card.style.textAlign = 'center';
+    
+    card.innerHTML = `
+      <img src="${f.logo}" alt="${name}" style="max-height:60px;object-fit:contain;margin-bottom:8px;">
+      <h4>${name}</h4>
+      <p class="muted" style="font-size:14px;">${f.intro}</p>
+      <p style="margin:6px 0;font-weight:600;">
+        📞 <a href="tel:${f.phone}" style="color:var(--accent);text-decoration:none;">${f.phone}</a>
+      </p>
+      <a class="btn ghost" href="${f.website}" target="_blank">🌐 Visit</a>
+    `;
+    
+    container.appendChild(card);
+  });
+}
+
+
+
+
+function renderInsurance(lang='en') {
+  const box = el('insurance-cards');
+  if(!box) return;
+  box.innerHTML = '';
+  DATA.insurance.forEach(i => {
+    const name = lang==='hi' ? i.name_hi : i.name_en;
+    const note = lang==='hi' ? i.note_hi : i.note_en;
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div style="display:flex;align-items:center;gap:12px">
+        <img src="${i.logo}" alt="${name}" style="width:60px;height:60px;object-fit:contain;border-radius:8px;">
+        <div>
+          <div class="title">${name}</div>
+          <div class="muted">${note}</div>
+        </div>
+      </div>
+      <div style="margin-top:10px;display:flex;gap:8px">
+        <a class="btn ghost" href="${i.website}" target="_blank">Website</a>
+        <a class="btn primary" href="https://wa.me/+91880805057?text=${encodeURIComponent((lang==='hi'?'बीमा कोट अनुरोध: ':'Insurance quote: ')+name)}" target="_blank">💬 WhatsApp</a>
+      </div>
+    `;
+    box.appendChild(card);
+  });
+}
+
+function renderReviews(lang='en'){
+  // embed Google Maps / Reviews panel using the share id (Option A)
+  const box = el('reviews-cards'); if(!box) return;
+  box.innerHTML = '';
+  const c = document.createElement('div'); c.className='card';
+  // Using the share embed id provided — this shows the live reviews widget
+  c.innerHTML = `<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3560.870665402382!2d80.9049658!3d26.8122465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399bfdba2febebc1%3A0xac770ed4a7b3befb!2sAutoWala%20Electric%20Three%20Wheeler%20Dealer!5e0!3m2!1sen!2suk!4v1758485290840!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`;
+  box.appendChild(c);
+}
+
+/* -------------------------
+   TRANSLATION APPLY
+   ------------------------- */
+function applyTranslations(lang='en'){
+  // static labels
+  document.querySelectorAll('[data-translate]').forEach(elm=>{
+    const key = elm.getAttribute('data-translate');
+    if(TRANSLATIONS[lang] && TRANSLATIONS[lang][key] !== undefined) {
+      elm.innerHTML = TRANSLATIONS[lang][key];
+    }
+  });
+
+  // dynamic renders
+  renderVehicles(lang);
+  // do not render spare list (we replaced it with a call-to-enquire)
+  renderFinance(lang);
+  renderInsurance(lang);
+  renderReviews(lang);
+
+  // branches text and maps
+  const b1 = DATA.branches[0], b2 = DATA.branches[1], b3=DATA.branches[2];
+  if(el('map-Barabanki')) el('map-Barabanki').src = b1.maps;
+  if(el('map-Dubagga')) el('map-Dubagga').src = b2.maps;
+  if(el('map-Mohanlalganj')) el('map-Mohanlalganj').src = b3.maps;
+  if(el('map-Bachrawan')) el('map-Bachrawan').src = b4.maps;
+  if(el('call-Barabanki')) el('call-Barabanki').href = `tel:${b1.phone}`;
+  if(el('call-Dubagga')) el('call-Dubagga').href = `tel:${b2.phone}`;
+  if(el('call-Mohanlalganj')) el('call-Mohanlalganj').href = `tel:${b3.phone}`;
+  if(el('call-Bachrawan')) el('call-Bachrawan').href = `tel:${b4.phone}`;
+  if(el('wa-Barabanki')) el('wa-Barabanki').href = `https://wa.me/${DATA.whatsappNumber}?text=${encodeURIComponent((lang==='hi'?'शाखा जानकारी: ':'Branch info: ')+ (lang==='hi'? b1.name_hi : b1.name_en))}`;
+  if(el('wa-Dubagga')) el('wa-Dubagga').href = `https://wa.me/+917052959999?text=${encodeURIComponent((lang==='hi'?'शाखा जानकारी: ':'Branch info: ')+ (lang==='hi'? b2.name_hi : b2.name_en))}`;
+  if(el('wa-Mohanlalganj')) el('wa-Mohanlalganj').href = `https://wa.me/+917052959999?text=${encodeURIComponent((lang==='hi'?'शाखा जानकारी: ':'Branch info: ')+ (lang==='hi'? b3.name_hi : b3.name_en))}`;
+  if(el('wa-Bachrawan')) el('wa-Bachrawan').href = `https://wa.me/+917052959999?text=${encodeURIComponent((lang==='hi'?'शाखा जानकारी: ':'Branch info: ')+ (lang==='hi'? b4.name_hi : b4.name_en))}`;
+  if(el('footer-wa')) el('footer-wa').parentElement.href = `https://wa.me/${DATA.whatsappNumber}`;
+  if(el('wa-top')) el('wa-top').href = `https://wa.me/${DATA.whatsappNumber}`;
+  if(el('footer-fb')) el('footer-fb').href = 'https://www.facebook.com/share/1JmZK6z3Ru/';
+  if(el('fb-top')) el('fb-top').href = 'https://www.facebook.com/share/1JmZK6z3Ru/';
+  if(el('footer-call')) el('footer-call').href = `tel:${DATA.branches[0].phone}`;
+  if(el('call-top')) el('call-top').href = `tel:+916389907777`;
+
+  // finance description
+  if(el('finance-desc')) el('finance-desc').textContent = TRANSLATIONS[lang].financeDesc || TRANSLATIONS[lang].financeNote || '';
+
+  // update placeholders
+  if(el('spare-search') && TRANSLATIONS[lang].spareSearchPlaceholder) el('spare-search').placeholder = TRANSLATIONS[lang].spareSearchPlaceholder;
+  if(el('emi-product') && el('emi-product').querySelector('option')) el('emi-product').querySelector('option').textContent = TRANSLATIONS[lang].select;
+}
+
+/* -------------------------
+   EMI Calculator
+   ------------------------- */
+function calcEMI(){
+  const priceSel = el('emi-product') ? el('emi-product').value : '';
+  const manualPrice = Number((el('emi-price').value||'').replace(/[^0-9]/g,'')) || 0;
+  const price = priceSel ? Number(priceSel) : manualPrice;
+  const dp = Number(el('emi-dp').value||0);
+  const tenure = Math.max(1, Number(el('emi-tenure').value||1));
+  const rate = Number(el('emi-rate').value||0);
+  const loan = Math.max(0, price - dp);
+  const r = rate/100/12;
+  let emi = 0;
+  if(loan <= 0 || tenure<=0) emi = 0;
+  else if(r>0) emi = loan * r * Math.pow(1+r,tenure) / (Math.pow(1+r,tenure)-1);
+  else emi = loan/tenure;
+  el('emi-result').textContent = emi>0 ? (fmtINR(Math.round(emi)) || '') + (currentLang==='hi'?'/माह':'/mo') : '—';
+  el('emi-loan').textContent = loan>0 ? (fmtINR(Math.round(loan)) || '') : '—';
+}
+
+/* -------------------------
+   Spare search (kept but not wired by default)
+   ------------------------- */
+function spareSearch(query, lang='en'){
+  if(!query) return renderSpares(lang);
+  const q = query.trim().toLowerCase();
+  const res = DATA.spares.filter(s=>{
+    const name = (lang==='hi' ? s.name_hi : s.name_en) || '';
+    return name.toLowerCase().includes(q) || (s.price && s.price.toString().includes(q));
+  });
+  if(res.length) renderSpares(lang, res);
+  else {
+    if(el('spare-list')) el('spare-list').innerHTML = `<li style="padding:8px;color:var(--muted)">${TRANSLATIONS[lang].spareNotFound || (lang==='hi' ? 'मिलने वाला पार्ट नहीं। संपर्क करें।' : 'No matching spare found. Contact us to confirm availability.')}</li>`;
+  }
+}
+
+/* -------------------------
+   Lead form actions
+   ------------------------- */
+function initLeadForm(lang='en'){
+  const form = el('lead-form');
+  if(!form) return;
+  form.addEventListener('submit', e=>{
+    e.preventDefault();
+    const fd = new FormData(form); const data = Object.fromEntries(fd.entries());
+    const msgLines = [
+      (lang==='hi' ? 'लीड अनुरोध' : 'Lead Request'),
+      `${(lang==='hi'?'नाम':'Name')}: ${data.name}`,
+      `${(lang==='hi'?'फोन':'Phone')}: ${data.phone}`,
+      `${(lang==='hi'?'शाखा':'Branch')}: ${data.branch || '-'}`,
+      `${(lang==='hi'?'उत्पाद':'Product')}: ${data.product || '-'}`,
+      `${(lang==='hi'?'संदेश':'Msg')}: ${data.message || '-'}`
+    ];
+    const text = msgLines.join('\n');
+    window.open(`https://wa.me/${DATA.whatsappNumber}?text=${encodeURIComponent(text)}`,'_blank');
+  });
+
+  const req = el('req-callback');
+  if(req){
+    req.addEventListener('click', ()=>{
+      alert((currentLang==='hi'? 'धन्यवाद! हमारी टीम जल्द ही आपको कॉल करेगी।' : 'Thank you! Our team will call you shortly.') );
+    });
+  }
+}
+
+/* -------------------------
+   Refer / share
+   ------------------------- */
+function initRefer(lang='en'){
+  const shareWa = el('share-wa'), shareSms = el('share-sms');
+  if(shareWa){
+    shareWa.addEventListener('click', ()=>{
+      const uid = Math.random().toString(36).slice(2,8); // referral code
+      const link = "https://autowala1.in"; // main website, not invalid /ref/
+      const text = (lang==='hi' 
+        ? `Autowala रेफरल — ₹2,000 कैशबैक पाएं!\nमेरा कोड: ${uid}\nलिंक: ${link}`
+        : `Autowala Referral — Earn ₹2,000 cashback!\nMy code: ${uid}\nWebsite: ${link}`);
+      
+      // Let user choose WhatsApp contact
+      window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`,'_blank');
+    });
+  }
+  if(shareSms){
+    shareSms.addEventListener('click', ()=>{
+      const uid = Math.random().toString(36).slice(2,8);
+      const link = "https://autowala1.in";
+      const body = (lang==='hi' 
+        ? `Autowala रेफरल — ₹2,000 कैशबैक पाएं!\nमेरा कोड: ${uid}\nलिंक: ${link}`
+        : `Autowala Referral — Earn ₹2,000 cashback!\nMy code: ${uid}\nWebsite: ${link}`);
+      
+      window.location.href = `sms:?body=${encodeURIComponent(body)}`;
+    });
+  }
+}
+
+
+
+
+/* -------------------------
+   Language handling & boot
+   ------------------------- */
+let currentLang = 'en';
+
+function detectAndApplyLanguage(){
+  // detect browser language
+  const navLang = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+  if(navLang.startsWith('hi')) currentLang = 'hi';
+  else currentLang = localStorage.getItem('autowala_lang') || 'en';
+  if(el('lang-toggle')) el('lang-toggle').value = currentLang;
+  applyTranslations(currentLang);
+  initLeadForm(currentLang);
+  initRefer(currentLang);
+}
+
+if(el('lang-toggle')){
+  el('lang-toggle').addEventListener('change', (e)=>{
+    currentLang = e.target.value;
+    localStorage.setItem('autowala_lang', currentLang);
+    applyTranslations(currentLang);
+  });
+}
+
+/* remaining UI wiring */
+document.addEventListener('DOMContentLoaded', ()=>{
+  // initial render/detect
+  detectAndApplyLanguage();
+
+  // wire spare search & clear only if inputs exist (we replaced spare UI)
+  if(el('spare-search')) el('spare-search').addEventListener('input', ()=>spareSearch(el('spare-search').value, currentLang));
+  if(el('spare-clear')) el('spare-clear').addEventListener('click', ()=>{ if(el('spare-search')) el('spare-search').value=''; renderSpares(currentLang); });
+
+  // EMI wiring
+  if(el('emi-calc-btn')) el('emi-calc-btn').addEventListener('click', calcEMI);
+  if(el('emi-product')) el('emi-product').addEventListener('change', ()=>{
+    const val = el('emi-product').value;
+    if(val) el('emi-price').value = Number(val);
+    calcEMI();
+  });
+
+  // wire nav tiles
+  document.querySelectorAll('.tile').forEach(t=>t.addEventListener('click', ()=>{ location.href = t.dataset.href; }));
+
+  // populate year
+  if(el('year')) el('year').textContent = new Date().getFullYear();
+});
+</script>
+</body>
+</html>

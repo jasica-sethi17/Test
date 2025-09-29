@@ -1,0 +1,966 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Autowala — Vehicles, Finance & Support</title>
+  <meta name="description" content="Autowala - vehicles, EMI, finance, insurance, spare parts, WhatsApp support" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+:root{
+  --navy:#081C3A;
+  --accent:#2274F2;
+  --muted:#6B7C98;
+  --card:#FFFFFF;
+  --bg:#071732;
+  --soft-bg:#f4f8ff;
+  --radius:14px;
+  --shadow:0 10px 30px rgba(4,18,40,0.28);
+  --maxw:1100px;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial;color:var(--navy);background:linear-gradient(180deg,var(--bg),#071732);-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none}
+.container{max-width:var(--maxw);margin:0 auto;padding:16px}
+
+/* Header */
+header{position:sticky;top:0;z-index:60;background:rgba(255,255,255,0.02);backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,0.03)}
+.topbar{display:flex;align-items:center;gap:12px;justify-content:space-between;padding:12px 16px}
+.brand{display:flex;align-items:center;gap:12px}
+.logo-box{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#12c8ff);display:grid;place-items:center;color:white;font-weight:800;font-size:18px;box-shadow:var(--shadow)}
+.brand h1{margin:0;font-size:18px;color:white}
+.brand small{display:block;color:#d6e8ff;font-size:12px;margin-top:2px}
+
+/* top-right actions */
+.top-actions{display:flex;gap:8px;align-items:center}
+.lang-select{background:transparent;color:white;border-radius:999px;padding:6px 8px;border:1px solid rgba(255,255,255,0.08);font-weight:700}
+.icon-btn{display:inline-flex;align-items:center;gap:8px;padding:8px;border-radius:999px;background:transparent;color:white;border:1px solid rgba(255,255,255,0.04);cursor:pointer}
+.icon-btn svg{width:18px;height:18px;display:block}
+
+/* nav tiles */
+nav{padding:10px 16px}
+.navgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.tile{background:var(--card);padding:14px;border-radius:12px;text-align:center;border:1px solid rgba(4,18,40,0.06);box-shadow:0 8px 24px rgba(2,16,40,0.18);cursor:pointer}
+.tile .emoji{font-size:20px}
+.tile span{display:block;margin-top:8px;font-weight:700;color:var(--navy);font-size:13px}
+@media(max-width:980px){.navgrid{grid-template-columns:repeat(4,1fr)}} 
+@media(max-width:760px){.navgrid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:420px){.navgrid{grid-template-columns:repeat(3,1fr);gap:8px}.tile{padding:10px}}
+
+/* hero */
+.hero{padding:22px 16px}
+.hero-card{display:flex;gap:16px;align-items:center;background:var(--card);border-radius:18px;padding:18px;border:1px solid rgba(4,18,40,0.04);box-shadow:var(--shadow)}
+.hero h2{margin:0;font-size:20px;color:var(--navy)}
+.hero p{margin:0;color:var(--muted)}
+
+/* sections */
+main{padding-bottom:60px}
+section{scroll-margin-top:120px;padding:18px 16px}
+.section-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.section-title h3{margin:0;font-size:18px;color:var(--card);background:linear-gradient(90deg,var(--accent),#12c8ff);-webkit-background-clip:text;background-clip:text}
+.badge{font-size:12px;padding:6px 10px;border-radius:999px;background:#f1f7ff;border:1px solid rgba(30,111,232,0.08);color:var(--accent)}
+
+/* cards grid */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:980px){.cards{grid-template-columns:repeat(2,1fr)}} 
+@media(max-width:640px){.cards{grid-template-columns:1fr}}
+.card{background:var(--card);border-radius:16px;padding:12px;border:1px solid rgba(4,18,40,0.04);box-shadow:var(--shadow);overflow:hidden}
+.card .title{font-weight:800;color:var(--navy);margin-bottom:6px}
+.muted{color:var(--muted);font-size:14px}
+
+/* vehicle card */
+.vehicle-img{height:150px;object-fit:cover;border-radius:10px;margin-bottom:10px;width:100%}
+.pill{display:inline-block;padding:6px 10px;border-radius:999px;background:#f1f7ff;border:1px solid rgba(4,18,40,0.04);font-size:12px;color:var(--accent)}
+
+/* product features */
+.features-list{margin-top:8px;padding-left:16px;color:var(--muted);font-weight:600}
+.features-list li{margin-bottom:4px;font-size:14px}
+
+/* spare parts list */
+.spare-box{background:var(--card);padding:12px;border-radius:12px;border:1px solid rgba(4,18,40,0.04);box-shadow:var(--shadow)}
+.spare-search{display:flex;gap:8px;margin-bottom:10px}
+.spare-search input{flex:1;padding:10px;border-radius:10px;border:1px solid rgba(4,18,40,0.06)}
+.spare-list{max-height:260px;overflow:auto;margin:0;padding:0;list-style:none}
+.spare-list li{display:flex;justify-content:space-between;padding:8px;border-bottom:1px dashed rgba(4,18,40,0.03);font-weight:600}
+
+/* tables */
+.table{width:100%;border-collapse:separate;border-spacing:0 10px}
+.table th,.table td{padding:12px;text-align:left}
+.table tr{background:var(--card);border:1px solid rgba(4,18,40,0.04);border-radius:10px}
+
+/* faq */
+.accordion details{background:var(--card);border-radius:12px;margin:8px 0;border:1px solid rgba(4,18,40,0.04);box-shadow:var(--shadow)}
+.accordion summary{cursor:pointer;padding:14px;font-weight:700}
+.accordion p{padding:0 14px 14px;margin:0;color:var(--muted)}
+
+/* contact/lead */
+.contact-card{background:var(--card);padding:14px;border-radius:12px;border:1px solid rgba(4,18,40,0.04);box-shadow:var(--shadow);max-width:760px;margin:auto}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.form-grid .full{grid-column:1/-1}
+input, select, textarea{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(4,18,40,0.06)}
+
+/* buttons */
+.btn{appearance:none;border:0;border-radius:12px;padding:12px 16px;font-weight:700;cursor:pointer}
+.btn.primary{background:var(--accent);color:white}
+.btn.ghost{background:transparent;border:1px solid rgba(4,18,40,0.06);color:var(--navy)}
+.small{padding:8px 10px;border-radius:8px}
+
+/* footer */
+footer{margin-top:30px;padding:24px 16px;border-top:1px solid rgba(255,255,255,0.03);color:var(--muted);font-size:14px}
+.footer-grid{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.logo-small{width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,var(--accent),#12c8ff);display:grid;place-items:center;color:white;font-weight:800}
+
+/* small helper */
+.kv{display:flex;gap:8px;align-items:center}
+
+/* responsiveness improvements for mobile */
+@media(max-width:520px){
+  .topbar{padding:10px}
+  .logo-box{width:40px;height:40px;font-size:16px}
+  .brand h1{font-size:16px}
+  .brand small{font-size:11px}
+  .hero-card{flex-direction:column;align-items:flex-start}
+  .hero-card img{width:100%;max-width:220px}
+  .vehicle-img{height:120px}
+  .form-grid{grid-template-columns:1fr}
+  .btn{width:100%}
+  .navgrid{gap:8px}
+  .tile span{font-size:12px}
+  .spare-list{max-height:320px}
+}
+
+/* subtle touch when cards are long */
+.card p, .card .muted{line-height:1.4}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="topbar container">
+      <div class="brand">
+        <div class="logo-box" aria-hidden>AW</div>
+        <div>
+          <h1 data-translate="brandName">Autowala</h1>
+          <small data-translate="brandTag">Vehicles • Finance • WhatsApp support</small>
+        </div>
+      </div>
+
+      <div class="top-actions" role="group" aria-label="Top actions">
+        <select id="lang-toggle" class="lang-select" aria-label="Language switch">
+          <option value="en">English</option>
+          <option value="hi">हिंदी</option>
+        </select>
+
+        <a id="call-top" class="icon-btn" href="tel:+918808050555" title="Call Autowala">
+          <!-- phone icon -->
+          <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M6.6 10.8a15.1 15.1 0 006.6 6.6l2.1-2.1a1 1 0 011.1-.2c1.2.5 2.5.8 3.9.8a1 1 0 011 1v3.5a1 1 0 01-1 1C10.1 21.6 2.4 13.9 2.4 3.6A1 1 0 013.4 2.6H6.9a1 1 0 011 1c0 1.4.3 2.7.8 3.9.2.4.1.9-.2 1.1L6.6 10.8z"/></svg>
+        </a>
+
+        <a id="wa-top" class="icon-btn" href="https://wa.me/918808050555?text=Hello%20Autowala" target="_blank" rel="noopener" title="WhatsApp Autowala">
+          <!-- WhatsApp green icon -->
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#25D366" d="M20.5 3.5A11 11 0 0012.1 1C6.4 1 1.8 5.3 1.8 10.7c0 1.9.6 3.7 1.6 5.3L1 23l6.2-1.6c1.4.4 2.8.6 4.3.6 5.6 0 10.2-4.3 10.2-9.6 0-2.6-1.1-5-3-6.9zM12.1 19.5c-1.3 0-2.5-.2-3.6-.6l-.3-.1-3.6.9 1-3.4-.2-.3A7.6 7.6 0 014 10.7c0-4 4.2-7.2 8.1-7.2 4 0 8.1 3.2 8.1 7.2 0 4-4.1 7.2-8.1 7.2z"/></svg>
+        </a>
+
+        <a id="fb-top" class="icon-btn" href="https://www.facebook.com/Autowala" target="_blank" rel="noopener" title="Facebook Autowala">
+          <!-- modern Facebook icon -->
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#1877F2" d="M22 12a10 10 0 10-11.5 9.9v-7H8v-3h2.5V9.5c0-2.5 1.5-3.9 3.7-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.1 0-1.5.7-1.5 1.4V12H19l-.5 3h-2.3v7A10 10 0 0022 12z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="container" aria-label="Quick menu">
+      <div class="navgrid">
+        <div class="tile" data-href="#products"><div class="emoji">🚗</div><span data-translate="navVehicles">Vehicles</span></div>
+        <div class="tile" data-href="#spares"><div class="emoji">🔧</div><span data-translate="navSpares">Spare Parts</span></div>
+        <div class="tile" data-href="#finance"><div class="emoji">🏦</div><span data-translate="navFinance">Finance</span></div>
+        <div class="tile" data-href="#insurance"><div class="emoji">🛡️</div><span data-translate="navInsurance">Insurance</span></div>
+        <div class="tile" data-href="#offers"><div class="emoji">🎁</div><span data-translate="navOffers">Offers</span></div>
+        <div class="tile" data-href="#contact"><div class="emoji">📍</div><span data-translate="navBranches">Branches</span></div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <!-- hero -->
+    <section class="hero" id="home">
+      <div class="hero-card">
+        <div style="flex:1">
+          <h2 data-translate="heroTitle">Welcome to Autowala</h2>
+          <p class="muted" data-translate="heroCopy">Lucknow’s Trusted EV Dealer for 15+ Years</p>
+          <p id="dealerText">Become a dealer for EV: contact <a href="mailto:autowala2018@gmail.com">autowala2018@gmail.com</a> or call <a href="tel:+91880818888">+91 88081 8888</a></p>
+
+          <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+            <a class="btn primary" href="#products" data-translate="browse">Browse Vehicles</a>
+            <a class="btn ghost" href="#lead" data-translate="requestCall">Contact Us</a>
+          </div>
+        </div>
+        <div style="width:160px;text-align:center">
+          <img src="Promo.jpg" alt="car" style="width:140px;border-radius:12px;box-shadow:var(--shadow)">
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCTS -->
+    <section id="products">
+      <div class="section-title">
+        <h3 data-translate="vehicles">Vehicles</h3>
+        <span class="badge" data-translate="pick">Pick a vehicle to view details</span>
+      </div>
+
+      <div class="cards" id="vehicle-list">
+        <!-- vehicle cards rendered by JS -->
+      </div>
+    </section>
+
+    <!-- EMI Calculator (below vehicles) -->
+    <section id="emi">
+      <div class="section-title">
+        <h3 data-translate="emiCalculator">EMI Calculator</h3>
+        <span class="muted" data-translate="emiHint">Select vehicle or enter price → change down payment, tenure, interest</span>
+      </div>
+
+      <div class="card">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:end">
+          <div>
+            <label style="font-size:13px;color:var(--muted)" data-translate="vehicleOrPrice">Vehicle / Price</label>
+            <select id="emi-product" style="width:100%;padding:10px;border-radius:10px;border:1px solid rgba(4,18,40,0.06)">
+              <option value="">{{select}}</option>
+            </select>
+            <div style="margin-top:8px" class="muted" data-translate="orEnter">Or enter price manually</div>
+            <input id="emi-price" placeholder="₹ price" style="margin-top:6px;padding:10px;border-radius:10px;border:1px solid rgba(4,18,40,0.06)" />
+          </div>
+          <div>
+            <label style="font-size:13px;color:var(--muted)" data-translate="downPayment">Down payment (₹)</label>
+            <input id="emi-dp" type="number" value="20000" style="padding:10px;border-radius:10px;border:1px solid rgba(4,18,40,0.06)" />
+            <label style="font-size:13px;color:var(--muted);margin-top:8px" data-translate="tenure">Tenure (months)</label>
+            <input id="emi-tenure" type="number" value="36" min="6" max="84" style="padding:10px;border-radius:10px;border:1px solid rgba(4,18,40,0.06)" />
+            <label style="font-size:13px;color:var(--muted);margin-top:8px" data-translate="interest">Interest (%)</label>
+            <input id="emi-rate" type="number" value="11" step="0.1" style="padding:10px;border-radius:10px;border:1px solid rgba(4,18,40,0.06)" />
+          </div>
+        </div>
+
+        <div style="display:flex;gap:12px;align-items:center;margin-top:12px;flex-wrap:wrap">
+          <div style="flex:1;padding:12px;border-radius:10px;background:#f1f7ff;border:1px solid rgba(4,18,40,0.04)">
+            <div style="font-size:13px;color:var(--muted)" data-translate="monthlyEmi">Monthly EMI</div>
+            <div id="emi-result" style="font-weight:800;font-size:18px;margin-top:6px">—</div>
+          </div>
+          <div style="flex:1;padding:12px;border-radius:10px;background:#fff;border:1px solid rgba(4,18,40,0.04)">
+            <div style="font-size:13px;color:var(--muted)" data-translate="loanAmount">Loan Amount</div>
+            <div id="emi-loan" style="font-weight:800;font-size:18px;margin-top:6px">—</div>
+          </div>
+          <div>
+            <button id="emi-calc-btn" class="btn primary" data-translate="calculate">Calculate EMI</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SPARE PARTS -->
+    <section id="spares">
+      <div class="section-title">
+        <h3 data-translate="spareParts">Spare Parts</h3>
+      </div>
+    
+      <div class="spare-box">
+        <div class="spare-search">
+          <input id="spare-search" placeholder="Search spare part (e.g., Brake Pad)" />
+          <button onclick="window.location.href='tel:+919169648790'">Call for Spare Parts</button>
+          <button onclick="window.location.href='tel:+919682812238'">Call for Service</button>
+          <button style="color:red;font-weight:bold;" onclick="window.location.href='tel:+919911112222'">SOS</button>
+        </div>
+        <ul class="spare-list" id="spare-list">
+          <!-- JS renders -->
+        </ul>
+        <div style="margin-top:8px" class="muted" data-translate="spareMore">We have many more spare parts — contact us to confirm availability.</div>
+      </div>
+    </section>
+
+    <section id="finance">
+      <div class="section-title">
+        <h3 data-translate="finance">Finance Partners</h3>
+        <span class="muted" data-translate="financier">Final approval & precise rate depend on financier and documents.</span>
+      </div>
+
+      <div class="card">
+        <div id="finance-desc" class="muted"></div>
+      </div>
+
+      <div id="finance-cards" class="cards-container cards" style="margin-top:12px"></div>
+    </section>
+
+    <section id="insurance">
+      <div class="section-title">
+        <h3 data-translate="insurance">Insurance</h3>
+        <span class="muted" data-translate="insuranceHint">Approximate — please contact for exact quote</span>
+      </div>
+
+      <div class="cards" id="insurance-cards"></div>
+    </section>
+
+    <!-- OFFERS / REFER -->
+    <section id="offers">
+      <div class="section-title">
+        <h3 data-translate="offers">Offers</h3>
+        <span class="badge" data-translate="earnBadge">Earn ₹2,000 cashback</span>
+      </div>
+
+      <div class="card">
+        <div class="title" data-translate="referTitle">Refer & Earn</div>
+        <p class="muted" data-translate="referCopy">Share your referral. When someone buys and completes a purchase, you get <strong>₹2,000 cashback</strong>.</p>
+        <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+          <button id="share-wa" class="btn primary" data-translate="shareWhatsApp">Share on WhatsApp</button>
+          <button id="share-sms" class="btn ghost" data-translate="shareSMS">Share via SMS</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section id="reviews">
+      <div class="section-title">
+        <h3 data-translate="reviews">Reviews</h3>
+        <span class="muted" data-translate="realBuyers">Real buyers</span>
+      </div>
+      <div class="cards" id="reviews-cards"></div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <div class="section-title">
+        <h3 data-translate="faq">Documents needed for Finance</h3>
+      </div>
+
+      <div class="accordion">
+        <details open>
+          <summary data-translate="customerDocsTitle">Customer Documents 👇🏻</summary>
+          <p class="muted" style="margin-top:8px" data-translate="customerDocs">• Aadhar Card<br>• PAN Card<br>• Driving Licence<br>• Electricity Bill / Rent Agreement (Updated)<br>• Bank Passbook (Updated)<br>• 4 Passport size Photos</p>
+        </details>
+        <details>
+          <summary data-translate="coApplicantTitle">Co-applicant (सह-आवेदक) Documents 👇🏻</summary>
+          <p class="muted" style="margin-top:8px" data-translate="coApplicantDocs">• Aadhar Card<br>• PAN Card / Voter ID Card<br>• 2 Passport size Photos</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- BRANCHES -->
+    <section id="contact">
+      <div class="section-title">
+        <h3 data-translate="branches">Branches</h3>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div class="card contact-card">
+          <div class="title">Autowala - Alambagh</div>
+          <p class="muted" data-translate="addr1">SBI Road, Chander Nagar, Alambagh, Lucknow - 226005</p>
+          <div style="margin-top:8px;display:flex;gap:8px">
+            <a class="btn ghost" id="call-alambagh" href="#">📞 Call</a>
+            <a class="btn primary" id="wa-alambagh" href="#">💬 WhatsApp</a>
+          </div>
+          <div style="margin-top:10px">
+            <iframe id="map-alambagh" src="" style="border:0;width:100%;height:180px;border-radius:10px" loading="lazy"></iframe>
+          </div>
+        </div>
+
+        <div class="card contact-card">
+          <div class="title">Autowala - Dubagga</div>
+          <p class="muted" data-translate="addr2">Kanpur Bypass Road, Near Lucknow Golden Hospital, Dubagga, Lucknow</p>
+          <div style="margin-top:8px;display:flex;gap:8px">
+            <a class="btn ghost" id="call-dubagga" href="#">📞 Call</a>
+            <a class="btn primary" id="wa-dubagga" href="#">💬 WhatsApp</a>
+          </div>
+          <div style="margin-top:10px">
+            <iframe id="map-dubagga" src="" style="border:0;width:100%;height:180px;border-radius:10px" loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LEAD FORM -->
+    <section id="lead">
+      <div class="section-title">
+        <h3 data-translate="contactForm">Contact / Lead Form</h3>
+        <span class="muted" data-translate="leadHint">Send your details on WhatsApp or request a callback</span>
+      </div>
+
+      <div class="contact-card">
+        <form id="lead-form">
+          <div class="form-grid">
+            <div>
+              <label style="font-size:13px;color:var(--muted)" data-translate="yourName">Your name</label>
+              <input name="name" required placeholder="Rahul / Seema" />
+            </div>
+            <div>
+              <label style="font-size:13px;color:var(--muted)" data-translate="phone">Phone (WhatsApp)</label>
+              <input name="phone" required placeholder="9876543210" inputmode="numeric" pattern="[0-9]{10}" />
+            </div>
+            <div>
+              <label style="font-size:13px;color:var(--muted)" data-translate="chooseBranch">Choose branch</label>
+              <select id="branch">
+              <option value="">Select Branch</option>
+              <option value="branch1">SBI Road, Chander Nagar</option>
+              <option value="branch2">Kanpur Bypass Road, Dubagga</option>
+              </select>
+            </div>
+            <div>
+              <label style="font-size:13px;color:var(--muted)" data-translate="chooseProduct">Choose product (optional)</label>
+              <select name="product" id="product-select"></select>
+            </div>
+          </div>
+
+          <label style="margin-top:10px;font-size:13px;color:var(--muted)" data-translate="message">Message (optional)</label>
+          <input name="message" placeholder="I want test drive / finance details" />
+
+          <div style="display:flex;gap:10px;margin-top:10px;flex-wrap:wrap">
+            <button class="btn primary" id="send-wa" type="submit">💬 <span data-translate="sendOnWa">Send on WhatsApp</span></button>
+            <button class="btn ghost" id="req-callback" type="button">📞 <span data-translate="requestCallback">Request Callback</span></button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+  </main>
+  
+  
+  <footer>
+    <div class="container footer-grid">
+      <div style="display:flex;gap:12px;align-items:center">
+        <div class="logo-small">AW</div>
+        <div>
+          <div style="font-weight:700;color:var(--card)" data-translate="autowala">Autowala</div>
+          <div class="muted" style="font-size:13px" data-translate="footerCopy">Trusted EV Dealer since 15+Years</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:12px;align-items:center">
+        <a id="footer-wa" href="https://wa.me/918808050555?text=Hello%20Autowala" aria-label="WhatsApp"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:26px;height:26px"><path fill="#25D366" d="M20.5 3.5A11 11 0 0012.1 1C6.4 1 1.8 5.3 1.8 10.7c0 1.9.6 3.7 1.6 5.3L1 23l6.2-1.6c1.4.4 2.8.6 4.3.6 5.6 0 10.2-4.3 10.2-9.6 0-2.6-1.1-5-3-6.9zM12.1 19.5c-1.3 0-2.5-.2-3.6-.6l-.3-.1-3.6.9 1-3.4-.2-.3A7.6 7.6 0 014 10.7c0-4 4.2-7.2 8.1-7.2 4 0 8.1 3.2 8.1 7.2 0 4-4.1 7.2-8.1 7.2z"/></svg></a>
+        <a id="footer-fb" href="https://www.facebook.com/Autowala" aria-label="Facebook"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:26px;height:26px"><path fill="#1877F2" d="M22 12a10 10 0 10-11.5 9.9v-7H8v-3h2.5V9.5c0-2.5 1.5-3.9 3.7-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.1 0-1.5.7-1.5 1.4V12H19l-.5 3h-2.3v7A10 10 0 0022 12z"/></svg></a>
+        <a id="footer-call" href="#" aria-label="Call"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:26px;height:26px;fill:#0b2a52"><path d="M6.6 10.8a15.1 15.1 0 006.6 6.6l2.1-2.1a1 1 0 011.1-.2c1.2.5 2.5.8 3.9.8a1 1 0 011 1v3.5a1 1 0 01-1 1C10.1 21.6 2.4 13.9 2.4 3.6A1 1 0 013.4 2.6H6.9a1 1 0 011 1c0 1.4.3 2.7.8 3.9.2.4.1.9-.2 1.1L6.6 10.8z"/></svg></a>
+      </div>
+    </div>
+    <div class="container" style="margin-top:12px;font-size:13px;color:var(--muted)">© <span id="year"></span> Autowala</div>
+  </footer>
+
+<script>
+/* -----------------------
+   DATA (edit these values)
+   ----------------------- */
+const DATA = {
+  whatsappNumber: '918808050555', // include country code without +
+  company: 'Autowala',
+  vehicles: [
+    { id:'v1', name_en:'ATUL RIX TWIN', name_hi:'अतुल रिक्स ट्विन', price:407642, img:'ATUL_RIX_TWIN.png',
+      features_en:['Double Battery, Double Range','Twin Battery Capacity: 13.2 KwH','Power: 9.9 kW','Range: 220 km/charge','Charging Time:6 Hours'], features_hi:['माइलेज: 22 kmpl','इंजन: 1.2L','वारंटी: 2 वर्ष']}
+  ],
+  spares:[
+    {name_en:'ball bearing (6204)', name_hi:'ball bearing (6204)', price:null},
+    {name_en:'Bearing seat upper', name_hi:'Bearing seat upper', price:null},
+    {name_en:'Upper steering nut streering', name_hi:'Upper steering nut streering', price:null},
+    {name_en:'stop washer', name_hi:'stop washer', price:null},
+    {name_en:'securing ring nut', name_hi:'securing ring nut', price:null},
+    {name_en:'ball cage', name_hi:'ball cage', price:null},
+    {name_en:'upper cone', name_hi:'upper cone', price:null},
+    {name_en:'lower cone -45 upper angle', name_hi:'lower cone -45 upper angle', price:null},
+    {name_en:'pan self tp screw 5sg*13ab mtg', name_hi:'pan self tp screw 5sg*13ab mtg', price:null},
+    {name_en:'metalic plan washer m5', name_hi:'metalic plan washer m5', price:null},
+    {name_en:'plate stop belt', name_hi:'plate stop belt', price:null},
+    {name_en:'Washer With protection For bearing', name_hi:'Washer With protection For bearing', price:null},
+    {name_en:'Rubber cap strearing coloum', name_hi:'Rubber cap strearing coloum', price:null},
+    {name_en:'Upper bearing Race Ass', name_hi:'Upper bearing Race Ass', price:null},
+    {name_en:'Lower bearing race ass', name_hi:'Lower bearing race ass', price:null},
+    {name_en:'Oil Seal(35*47*7)', name_hi:'Oil Seal(35*47*7)', price:null},
+    {name_en:'wheel box assy with black cover', name_hi:'wheel box assy with black cover', price:null},
+    {name_en:'blade fuse 10a', name_hi:'blade fuse 10a', price:null},
+    {name_en:'Horn sealed type dia 75 12v', name_hi:'Horn sealed type dia 75 12v', price:null},
+    {name_en:'usb mobile charger', name_hi:'usb mobile charger', price:null},
+    {name_en:'Needle bearing (SL 3520', name_hi:'Needle bearing (SL 3520', price:null},
+    {name_en:'Mudflap for Rear mud Gaurd', name_hi:'Mudflap for Rear mud Gaurd', price:null},
+    {name_en:'L5 transmission oil (EV drive R 3.1)', name_hi:'L5 transmission oil (EV drive R 3.1)', price:null},
+    {name_en:'Rubber cord (front mudgaurd)', name_hi:'Rubber cord (front mudgaurd)', price:null},
+    {name_en:'spring front suspension', name_hi:'spring front suspension', price:null},
+    {name_en:'Oil Seal', name_hi:'Oil Seal', price:null},
+    {name_en:'self locking nut', name_hi:'self locking nut', price:null},
+    {name_en:'bearing 6303', name_hi:'bearing 6303', price:null},
+    {name_en:'oil seal', name_hi:'oil seal', price:null},
+    {name_en:'dust cup', name_hi:'dust cup', price:null},
+    {name_en:'scerw for tighting wheel', name_hi:'scerw for tighting wheel', price:null},
+    {name_en:'lock plate', name_hi:'lock plate', price:null},
+    {name_en:'Distance piece', name_hi:'Distance piece', price:null},
+    {name_en:'nut (front axile)', name_hi:'nut (front axile)', price:null},
+    {name_en:'Buffer', name_hi:'Buffer', price:null},
+    {name_en:'distance piece', name_hi:'distance piece', price:null},
+    {name_en:'washer', name_hi:'washer', price:null},
+    {name_en:'silent block', name_hi:'silent block', price:null},
+    {name_en:'bush for traling link', name_hi:'bush for traling link', price:null},
+    {name_en:'boult for trailing link', name_hi:'boult for trailing link', price:null},
+    {name_en:'washer', name_hi:'washer', price:null},
+    {name_en:'scerw for traling link', name_hi:'scerw for traling link', price:null},
+    {name_en:'Buffer', name_hi:'Buffer', price:null},
+    {name_en:'front shock absorber', name_hi:'front shock absorber', price:null},
+    {name_en:'nyloc nut m10', name_hi:'nyloc nut m10', price:null},
+    {name_en:'shim', name_hi:'shim', price:null},
+    {name_en:'Disc Protection', name_hi:'Disc Protection', price:null},
+    {name_en:'flange', name_hi:'flange', price:null},
+    {name_en:'Traling Link Assy-Lh', name_hi:'Traling Link Assy-Lh', price:null},
+    {name_en:'Traling Link Assy-RH', name_hi:'Traling Link Assy-RH', price:null},
+    {name_en:'flasher 12v', name_hi:'flasher 12v', price:null},
+    {name_en:'MUFF CUP REMOVER TOOL', name_hi:'MUFF CUP REMOVER TOOL', price:null},
+    {name_en:'spacer', name_hi:'spacer', price:null},
+    {name_en:'Distance piece', name_hi:'Distance piece', price:null},
+    {name_en:'Spacer', name_hi:'Spacer', price:null},
+    {name_en:'wheel cyclinder', name_hi:'wheel cyclinder', price:null},
+    {name_en:'traling link inner bush', name_hi:'traling link inner bush', price:null},
+    {name_en:'O-Ring', name_hi:'O-Ring', price:null},
+    {name_en:'Shoe kit', name_hi:'Shoe kit', price:null},
+    {name_en:'AUTO adjuster kit Lh', name_hi:'AUTO adjuster kit Lh', price:null},
+    {name_en:'solid oil ball cage', name_hi:'solid oil ball cage', price:null},
+    {name_en:'primary subassembly', name_hi:'primary subassembly', price:null},
+    {name_en:'secondry subassembly', name_hi:'secondry subassembly', price:null},
+    {name_en:'windshield frame assly complete', name_hi:'windshield frame assly complete', price:null},
+    {name_en:'Switich Three Position 12v', name_hi:'Switich Three Position 12v', price:null},
+    {name_en:'Hazard warning switich AP-1', name_hi:'Hazard warning switich AP-1', price:null},
+    {name_en:'Rear view mirrior Assly LH', name_hi:'Rear view mirrior Assly LH', price:null},
+    {name_en:'Rear view mirrior Assly RH', name_hi:'Rear view mirrior Assly RH', price:null},
+    {name_en:'laminated windshield glass', name_hi:'laminated windshield glass', price:null},
+    {name_en:'Biding side mudgaurd', name_hi:'Biding side mudgaurd', price:null},
+    {name_en:'Side door Lock assy Lh', name_hi:'Side door Lock assy Lh', price:null},
+    {name_en:'Side door lock assy RH', name_hi:'Side door lock assy RH', price:null},
+    {name_en:'Protection Cap', name_hi:'Protection Cap', price:null},
+    {name_en:'wiper blade with arm', name_hi:'wiper blade with arm', price:null},
+    {name_en:'Head lamp assy with side blinker LH AP-1', name_hi:'Head lamp assy with side blinker LH AP-1', price:null},
+    {name_en:'Head lamp assy with side blinker RH AP-1', name_hi:'Head lamp assy with side blinker RH AP-1', price:null},
+    {name_en:'Horn Switich Ap-1-12v', name_hi:'Horn Switich Ap-1-12v', price:null},
+    {name_en:'wiper motor assy 12v', name_hi:'wiper motor assy 12v', price:null},
+    {name_en:'ign strater switich with key (on/off)', name_hi:'ign strater switich with key (on/off)', price:null},
+    {name_en:'Tail lamp assyRH AP-1 12v', name_hi:'Tail lamp assyRH AP-1 12v', price:null},
+    {name_en:'wiper motor switich (self park)', name_hi:'wiper motor switich (self park)', price:null},
+    {name_en:'Rear axle shaft assy for cv shaft', name_hi:'Rear axle shaft assy for cv shaft', price:null},
+    {name_en:'propeller shaft assy complete cv', name_hi:'propeller shaft assy complete cv', price:null},
+    {name_en:'internal ring for below', name_hi:'internal ring for below', price:null},
+    {name_en:'flange wheel side', name_hi:'flange wheel side', price:null},
+    {name_en:'clamp small', name_hi:'clamp small', price:null},
+    {name_en:'below propeller for shaft', name_hi:'below propeller for shaft', price:null},
+    {name_en:'cone', name_hi:'cone', price:null},
+    {name_en:'snap ring for e- access side', name_hi:'snap ring for e- access side', price:null},
+    {name_en:'front axile', name_hi:'front axile', price:null},
+    {name_en:'Hand breake cable assyLH (Long)', name_hi:'Hand breake cable assyLH (Long)', price:null},
+    {name_en:'hand brake cable assy rh short', name_hi:'hand brake cable assy rh short', price:null},
+    {name_en:'AC cord (comman for mobili &engiri)', name_hi:'AC cord (comman for mobili &engiri)', price:null},
+    {name_en:'DC DC Converter', name_hi:'DC DC Converter', price:null},
+    {name_en:'can to can extention', name_hi:'can to can extention', price:null},
+    {name_en:'electric hand throttle Rh', name_hi:'electric hand throttle Rh', price:null},
+    {name_en:'Y splitter for can to can conn', name_hi:'Y splitter for can to can conn', price:null},
+    {name_en:'Relays(fuse box)', name_hi:'Relays(fuse box)', price:null},
+    {name_en:'W/H bms D-20WCS', name_hi:'W/H bms D-20WCS', price:null},
+    {name_en:'pdu to charger cable minda', name_hi:'pdu to charger cable minda', price:null},
+    {name_en:'W/H Rear D 2.0 WOC', name_hi:'W/H Rear D 2.0 WOC', price:null},
+    {name_en:'2200 watt minda charger', name_hi:'2200 watt minda charger', price:null},
+    {name_en:'Digital cluster mobili domestic', name_hi:'Digital cluster mobili domestic', price:null},
+    {name_en:'VCU M2 MD', name_hi:'VCU M2 MD', price:null},
+    {name_en:'PDU m2 MD N', name_hi:'PDU m2 MD N', price:null},
+    {name_en:'BATTERY POWERCOOL++ (WITHOUT ACTIVE COOL)', name_hi:'BATTERY POWERCOOL++ (WITHOUT ACTIVE COOL)', price:null},
+    {name_en:'can to can long pigtail', name_hi:'can to can long pigtail', price:null},
+    {name_en:'blade fuse 15A', name_hi:'blade fuse 15A', price:null},
+    {name_en:'blade fuse 20A', name_hi:'blade fuse 20A', price:null},
+    {name_en:'Internal circlip b47', name_hi:'Internal circlip b47', price:null},
+    {name_en:'hex hd scerw m6*18cl 8.8', name_hi:'hex hd scerw m6*18cl 8.8', price:null},
+    {name_en:'flange scerw (m10* 1.25*14)', name_hi:'flange scerw (m10* 1.25*14)', price:null},
+    {name_en:'hex head flanged scerw m6*12', name_hi:'hex head flanged scerw m6*12', price:null},
+    {name_en:'spring washer', name_hi:'spring washer', price:null},
+    {name_en:'can tool', name_hi:'can tool', price:null},
+    {name_en:'ALLOY WHEELS', name_hi:'ALLOY WHEELS', price:null},
+    {name_en:'AXIOM BATTERY CHARGER 48V/12A', name_hi:'AXIOM BATTERY CHARGER 48V/12A', price:null},
+    {name_en:'AXIOM CHARGER 18 AMP', name_hi:'AXIOM CHARGER 18 AMP', price:null},
+    {name_en:'AXIOM CHARGER 48V/ 16A', name_hi:'AXIOM CHARGER 48V/ 16A', price:null},
+    {name_en:'BACK LIGHT INDICATOR', name_hi:'BACK LIGHT INDICATOR', price:null},
+    {name_en:'CENTRE LOCK', name_hi:'CENTRE LOCK', price:null},
+    {name_en:'CONTROLLER 8714', name_hi:'CONTROLLER 8714', price:null},
+    {name_en:'CONTROLLER-1', name_hi:'CONTROLLER-1', price:null},
+    {name_en:'DIFFERENTIAL 33"', name_hi:'DIFFERENTIAL 33"', price:null},
+    {name_en:'DIFFERENTIAL-42', name_hi:'DIFFERENTIAL-42', price:null},
+    {name_en:'EASTMAN 135 AH', name_hi:'EASTMAN 135 AH', price:null},
+    {name_en:'EASTMAN 150 AH BATTERY', name_hi:'EASTMAN 150 AH BATTERY', price:null},
+    {name_en:'EASTMAN MITRA CHARGER LA1648', name_hi:'EASTMAN MITRA CHARGER LA1648', price:null},
+    {name_en:'ELECTRIC MOTOR', name_hi:'ELECTRIC MOTOR', price:null},
+    {name_en:'EM E-RICKSHAW MITRA-LA1848', name_hi:'EM E-RICKSHAW MITRA-LA1848', price:null},
+    {name_en:'FOG LIGHT', name_hi:'FOG LIGHT', price:null},
+    {name_en:'FRAME SS FRAME IN MS', name_hi:'FRAME SS FRAME IN MS', price:null},
+    {name_en:'FRONT SHOCKER', name_hi:'FRONT SHOCKER', price:null},
+    {name_en:'High Security Number Plate', name_hi:'High Security Number Plate', price:null},
+    {name_en:'KAAN SET', name_hi:'KAAN SET', price:null},
+    {name_en:'L/R SWITCH', name_hi:'L/R SWITCH', price:null},
+    {name_en:'LEADER 135 AH PLUS', name_hi:'LEADER 135 AH PLUS', price:null},
+    {name_en:'LEADER LET - 125 E+', name_hi:'LEADER LET - 125 E+', price:null},
+    {name_en:'LIVGUARD 140 AH', name_hi:'LIVGUARD 140 AH', price:null},
+    {name_en:'LIVGUARD BATTERY 130 AH', name_hi:'LIVGUARD BATTERY 130 AH', price:null},
+    {name_en:'MOTOR -1', name_hi:'MOTOR -1', price:null},
+    {name_en:'NUMBER PLATE SET', name_hi:'NUMBER PLATE SET', price:null},
+    {name_en:'PIPE FRAME', name_hi:'PIPE FRAME', price:null},
+    {name_en:'REFLECTOR', name_hi:'REFLECTOR', price:null},
+    {name_en:'STEPENE COVER', name_hi:'STEPENE COVER', price:null},
+    {name_en:'UTL E-CHARGER 16A/48V', name_hi:'UTL E-CHARGER 16A/48V', price:null},
+    {name_en:'WARRANTY REGISTRATION COUPON', name_hi:'WARRANTY REGISTRATION COUPON', price:null},
+    {name_en:'WIND SCREEN MS', name_hi:'WIND SCREEN MS', price:null},
+    {name_en:'WIND SCREEN SS', name_hi:'WIND SCREEN SS', price:null},
+    {name_en:'WIPER MOTOR', name_hi:'WIPER MOTOR', price:null}
+  ],
+  finance:[
+    {name_en:'Khushbu Auto Finance Ltd', name_hi:'खुशबू ऑटो फाइनेंस लिमिटेड', interest:'9.5% - 11.5%', fileCharge:'₹3,000 - ₹6,000', website:'https://www.kafl.co.in/', logo:'khushbu_logo.png'}
+  ],
+  insurance:[
+    {name_en:'GoDigit', name_hi:'GoDigit', note_en:'Approx. price — please contact for exact quote by model', note_hi:'अनुमानित मूल्य — सटीक कोट के लिए संपर्क करें', website:'https://www.godigit.com/', logo:'go_digit_logo.svg'}
+  ],
+  reviews:[
+    {name_en:'Amit', name_hi:'अमিত', text_en:'Process was easy. EMI explained clearly. Happy!', text_hi:'प्रक्रिया आसान थी। EMI स्पष्ट रूप से समझाया गया। खुश हूँ!', rating:5},
+    {name_en:'Pooja', name_hi:'पूजा', text_en:'Quick WhatsApp support and timely delivery.', text_hi:'त्वरित WhatsApp सहायता और समय पर डिलीवरी।', rating:5}
+  ],
+  branches:[
+    {id:'b1', name_en:'Alambagh', name_hi:'आलमबाग', phone:'+918808188888', address_en:'551 Ka/238 SBI Road, Chander Nagar, Alambagh, Lucknow-226005', address_hi:'551 238 रोड, चंदेर नगर, आलमबाग, लखनऊ-226005', maps:'https://www.google.com/maps?q=SBI+Road+Chander+Nagar+Alambagh+Lucknow&output=embed'},
+    {id:'b2', name_en:'Dubagga', name_hi:'डुबग्गा', phone:'+917052959999', address_en:'Kanpur Bypass Road, Near Lucknow Golden Hospital, Dubagga, Lucknow', address_hi:'कानपुर बाईपास रोड, निकट लखनऊ गोल्डन हॉस्पिटल, डुबग्गा, लखनऊ', maps:'https://www.google.com/maps?q=Kanpur+Bypass+Road+Lucknow&output=embed'}
+  ],
+  referralBase:'https://autowala.example/ref/'
+};
+
+/* -------------------------
+   TRANSLATION KEYS (for static labels)
+   ------------------------- */
+const TRANSLATIONS = {
+  en: {
+    brandName: 'Autowala',
+    brandTag: 'Lucknow ki Sawari, Chalti Bijli ki Dhaari',
+    navVehicles: 'Vehicles', navSpares:'Spare Parts', navFinance:'Finance', navInsurance:'Insurance', navOffers:'Offers', navBranches:'Branches',
+    heroTitle:'Welcome to Autowala', heroCopy:'Simple process • Clear pricing • Direct WhatsApp help', browse:'Browse Vehicles', requestCall:'Request Callback',
+    vehicles:'Vehicles', pick:'Pick a vehicle to view details',
+    emiCalculator:'EMI Calculator', emiHint:'Select vehicle or enter price → change down payment, tenure, interest',
+    vehicleOrPrice:'Vehicle / Price', orEnter:'Or enter price manually', downPayment:'Down payment (₹)', tenure:'Tenure (months)', interest:'Interest (%)',
+    monthlyEmi:'Monthly EMI', loanAmount:'Loan Amount', calculate:'Calculate EMI',
+    spareParts:'Spare Parts', spareHint:'Search parts or contact us for others', spareMore:'We have many more spare parts — contact us to confirm availability.', spareNotFound:'No matching spare found. Contact us to confirm availability.',
+    finance:'Finance Partners', fileCharge:'File charge shown', interest:'Interest (indicative)', website:'Website / Logo', financeNote:'Final approval & precise rate depend on financier and documents.', financeDesc:'We work with multiple financiers to offer competitive EMI plans. Exact rate depends on profile and documents. Contact us for personalized quotes.',
+    insurance:'Insurance', insuranceHint:'Approximate — please contact for exact quote',
+    offers:'Offers & Refer', earnBadge:'Earn ₹2,000 cashback', referTitle:'Refer & Earn', referCopy:'Share your referral. When someone buys and completes a purchase, you get ₹2,000 cashback.',
+    shareWhatsApp:'Share on WhatsApp', shareSMS:'Share via SMS',
+    reviews:'Reviews', realBuyers:'Real buyers',
+    faq:'Documents needed for Finance', customerDocsTitle:'Customer Documents 👇🏻', customerDocs:'• Aadhar Card<br>• PAN Card<br>• Driving Licence<br>• Electricity Bill / Rent Agreement (Updated)<br>• Bank Passbook (Updated)<br>• 4 Passport size Photos',
+    coApplicantTitle:'Co-applicant (सह-आवेदक) Documents 👇🏻', coApplicantDocs:'• Aadhar Card<br>• PAN Card / Voter ID Card<br>• 2 Passport size Photos',
+    branches:'Branches', addr1:'SBI Road, Chander Nagar, Alambagh, Lucknow - 226005', addr2:'Kanpur Bypass Road, Near Lucknow Golden Hospital, Dubagga, Lucknow',
+    contactForm:'Contact / Lead Form', leadHint:'Send your details on WhatsApp or request a callback',
+    yourName:'Your name', phone:'Phone (WhatsApp)', chooseBranch:'Choose branch', chooseProduct:'Choose product (optional)', message:'Message (optional)', sendOnWa:'Send on WhatsApp', requestCallback:'Request Callback',
+    sparePartsLabel:'Spare Parts', spareSearchPlaceholder:'Search spare part (e.g., Brake Pad)',
+    autowala:'Autowala', footerCopy:'Simple vehicles • Honest pricing • WhatsApp support',
+    select:'— Select vehicle —'
+  },
+  hi: {
+    brandName: 'ऑटोवाला',
+    brandTag: 'वाहन • फाइनेंस • WhatsApp सहायता',
+    navVehicles:'वाहन', navSpares:'स्पेयर पार्ट्स', navFinance:'फाइनेंस', navInsurance:'बीमा', navOffers:'ऑफ़र', navBranches:'शाखाएँ',
+    heroTitle:'ऑटोवाला में आपका स्वागत है', heroCopy:'सरल प्रक्रिया • स्पष्ट कीमतें • डायरेक्ट WhatsApp सहायता', browse:'वाहन देखें', requestCall:'कॉल का अनुरोध',
+    vehicles:'वाहन', pick:'विवरण देखने के लिए वाहन चुनें',
+    emiCalculator:'ईएमआई कैलकुलेटर', emiHint:'वाहन चुनें या कीमत दर्ज करें → डाउन पेमेंट, अवधि, ब्याज बदलें',
+    vehicleOrPrice:'वाहन / कीमत', orEnter:'या मैन्युअल रूप से कीमत दर्ज करें', downPayment:'डाउन पेमेंट (₹)', tenure:'अवधि (महीने)', interest:'ब्याज (%)',
+    monthlyEmi:'मासिक EMI', loanAmount:'लोन राशि', calculate:'EMI निकालें',
+    spareParts:'स्पेयर पार्ट्स', spareHint:'पार्ट खोजें या अन्य के लिए हमसे संपर्क करें', spareMore:'हमारे पास और भी कई स्पेयर पार्ट्स हैं — उपलब्धता की पुष्टि के लिए संपर्क करें।', spareNotFound:'मिलने वाला पार्ट नहीं। संपर्क करें।',
+    finance:'फाइनेंस पार्टनर', fileCharge:'फ़ाइल चार्ज दिखाया गया है', interest:'ब्याज (संकेतात्मक)', website:'वेबसाइट / लोगो', financeNote:'दरें संकेतात्मक हैं। अंतिम स्वीकृति और सटीक दरें वित्तदाता और दस्तावेज़ों पर निर्भर करती हैं।', financeDesc:'हम कई वित्तपोषकों के साथ काम करते हैं ताकि प्रतिस्पर्धी EMI योजनाएँ ऑफ़र कर सकें। सटीक दर प्रोफ़ाइल और दस्तावेज़ों पर निर्भर करती है। व्यक्तिगत कोट के लिए हमसे संपर्क करें।',
+    insurance:'बीमा', insuranceHint:'अनुमानित — कृपया सटीक कोट के लिए संपर्क करें',
+    offers:'ऑफ़र और रेफर', earnBadge:'₹2,000 कैशबैक कमाएँ', referTitle:'रेफर करें और कमाएं', referCopy:'रेफरल शेयर करें। जब कोई खरीदता है और पूरा करता है, तो आपको ₹2,000 कैशबैक मिलता है।',
+    shareWhatsApp:'WhatsApp पर शेयर करें', shareSMS:'SMS के जरिए शेयर करें',
+    reviews:'रिव्यू', realBuyers:'असली खरीदार',
+    faq:'फाइनेंस के लिए आवश्यक दस्तावेज़', customerDocsTitle:'ग्राहक दस्तावेज़ 👇🏻', customerDocs:'• आधार कार्ड<br>• पैन कार्ड<br>• ड्राइविंग लाइसेंस<br>• बिजली बिल / किराये का समझौता (अपडेटेड)<br>• बैंक पासबुक (अपडेटेड)<br>• 4 पासपोर्ट साइज फोटो',
+    coApplicantTitle:'सह-आवेदक दस्तावेज़ 👇🏻', coApplicantDocs:'• आधार कार्ड<br>• पैन कार्ड / वोटर आईडी<br>• 2 पासपोर्ट साइज फोटो',
+    branches:'शाखाएँ', addr1:'SBI रोड, चन्देर नगर, आलमबाग, लखनऊ - 226005', addr2:'कानपुर बाईपास रोड, निकट लखनऊ गोल्डन हॉस्पिटल, डुबग्गा, लखनऊ',
+    contactForm:'संपर्क / लीड फॉर्म', leadHint:'अपनी जानकारी WhatsApp पर भेजें या कॉल बैक का अनुरोध करें',
+    yourName:'आपका नाम', phone:'फोन (WhatsApp)', chooseBranch:'शाखा चुनें', chooseProduct:'उत्पाद चुनें (वैकल्पिक)', message:'संदेश (वैकल्पिक)', sendOnWa:'WhatsApp पर भेजें', requestCallback:'कॉल का अनुरोध करें',
+    sparePartsLabel:'स्पेयर पार्ट्स', spareSearchPlaceholder:'स्पेयर पार्ट खोजें (उदा., ब्रेक पैड)',
+    autowala:'ऑटोवाला', footerCopy:'सरल वाहन • ईमानदार मूल्य • WhatsApp सहायता',
+    select:'— वाहन चुनें —'
+  }
+};
+
+/* -------------------------
+   UTILS
+   ------------------------- */
+const el = id => document.getElementById(id);
+const fmtINR = n => n || n===0 ? new Intl.NumberFormat('en-IN',{style:'currency',currency:'INR',maximumFractionDigits:0}).format(n) : null;
+
+/* -------------------------
+   RENDER FUNCTIONS
+   ------------------------- */
+function renderVehicles(lang='en'){
+  const box = el('vehicle-list'); box.innerHTML='';
+  DATA.vehicles.forEach(v=>{
+    const name = lang === 'hi' ? v.name_hi : v.name_en;
+    const features = lang === 'hi' ? v.features_hi : v.features_en;
+    const card = document.createElement('div'); card.className='card';
+    card.innerHTML = `
+      <img class="vehicle-img" src="${v.img}" alt="${name}">
+      <div class="title">${name}</div>
+      <div class="muted"><p>Original Price: <span style="text-decoration: line-through;">₹430,000</span></p>
+      <p>Discounted Price (Limited Time Only): <span style="color:red; font-weight:bold;">₹407,642</span></p></div>
+      <ul class="features-list">${(features||[]).map(f=>`<li>${f}</li>`).join('')}</ul>
+      <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+        <a class="btn ghost" href="tel:${DATA.branches[0].phone}">📞 ${(lang==='hi')? 'कॉल':'Call'}</a>
+        <a class="btn primary" href="https://wa.me/${DATA.whatsappNumber}?text=${encodeURIComponent((lang==='hi'?'जानकारी चाहिए: ':'Inquiry: ')+name)}" target="_blank">💬 WhatsApp</a>
+        <a class="btn ghost" href="#lead">${(lang==='hi')? 'पूछताछ':'Enquire'}</a>
+      </div>
+    `;
+    box.appendChild(card);
+  });
+
+  // populate emi select & product select
+  const emiSel = el('emi-product'); const psel = el('product-select');
+  if(emiSel){ emiSel.innerHTML = `<option value="">${TRANSLATIONS[lang].select}</option>`; }
+  if(psel){ psel.innerHTML = `<option value="General Inquiry">${ (lang==='hi') ? 'सामान्य पूछताछ' : 'General Inquiry' }</option>`; }
+  DATA.vehicles.forEach(v=>{
+    if(emiSel) emiSel.insertAdjacentHTML('beforeend', `<option value="${v.price}">${ (lang==='hi')? v.name_hi : v.name_en } — ${fmtINR(v.price)||((lang==='hi')? 'संपर्क करें':'Contact for price')}</option>`);
+    if(psel) psel.insertAdjacentHTML('beforeend', `<option>${ (lang==='hi')? v.name_hi : v.name_en }</option>`);
+  });
+}
+
+function renderSpares(lang='en', list=null){
+  const ul = el('spare-list'); ul.innerHTML='';
+  const items = list || DATA.spares;
+  items.forEach(s=>{
+    const name = lang==='hi' ? s.name_hi : s.name_en;
+    const li = document.createElement('li');
+    const priceTxt = s.price || s.price===0 ? fmtINR(s.price) : (lang==='hi' ? 'मूल्य पूछें' : 'Contact for price');
+    li.innerHTML = `<span>${name}</span><strong>${priceTxt}</strong>`;
+    ul.appendChild(li);
+  });
+}
+
+function renderFinance(lang='en') {
+  const box = el('finance-cards'); // use a div container for cards
+  box.innerHTML = '';
+
+  DATA.finance.forEach(f => {
+    const name = lang==='hi' ? f.name_hi : f.name_en;
+    const card = document.createElement('div');
+    card.className = 'card';
+
+    card.innerHTML = `
+      <div style="display:flex;align-items:center;gap:10px">
+        <img src="${f.logo}" alt="${name}" style="width:44px;height:44px;object-fit:contain;border-radius:6px;">
+        <div>
+          <div class="title">${name}</div>
+          <div class="muted">${f.interest || ''}<br><small class="muted">${f.fileCharge || ''}</small></div>
+        </div>
+      </div>
+      <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+        <a class="btn ghost" href="${f.website}" target="_blank">Website</a>
+        <a class="btn primary" href="https://wa.me/+918808050557?text=${encodeURIComponent((lang==='hi'?'फ़ाइनेंस पूछताछ: ':'Finance query: ')+name)}" target="_blank">💬 WhatsApp</a>
+      </div>
+    `;
+
+    box.appendChild(card);
+  });
+}
+
+
+function renderInsurance(lang='en') {
+  const box = el('insurance-cards');
+  box.innerHTML = '';
+
+  DATA.insurance.forEach(i => {
+    const name = lang==='hi' ? i.name_hi : i.name_en;
+    const note = lang==='hi' ? i.note_hi : i.note_en;
+
+    const card = document.createElement('div');
+    card.className = 'card';
+
+    card.innerHTML = `
+      <div style="display:flex;align-items:center;gap:12px">
+        <img src="${i.logo}" alt="${name}" style="width:60px;height:60px;object-fit:contain;border-radius:8px;">
+        <div>
+          <div class="title">${name}</div>
+          <div class="muted">${note}</div>
+        </div>
+      </div>
+      <div style="margin-top:10px;display:flex;gap:8px">
+        <a class="btn ghost" href="${i.website}" target="_blank">Website</a>
+        <a class="btn primary" href="https://wa.me/+918299291618?text=${encodeURIComponent((lang==='hi'?'बीमा कोट अनुरोध: ':'Insurance quote: ')+name)}" target="_blank">💬 WhatsApp</a>
+      </div>
+    `;
+
+    box.appendChild(card);
+  });
+}
+
+
+function renderReviews(lang='en'){
+  const box = el('reviews-cards'); box.innerHTML='';
+  DATA.reviews.forEach(r=>{
+    const name = lang==='hi'? r.name_hi : r.name_en;
+    const text = lang==='hi'? r.text_hi : r.text_en;
+    const card = document.createElement('div'); card.className='card';
+    card.innerHTML = `<div style="display:flex;justify-content:space-between;align-items:center"><strong>${name}</strong><div>${'⭐'.repeat(r.rating)}</div></div><p class="muted" style="margin-top:8px">${text}</p>`;
+    box.appendChild(card);
+  });
+}
+
+/* -------------------------
+   TRANSLATION APPLY
+   ------------------------- */
+function applyTranslations(lang='en'){
+  // static labels
+  document.querySelectorAll('[data-translate]').forEach(elm=>{
+    const key = elm.getAttribute('data-translate');
+    if(TRANSLATIONS[lang] && TRANSLATIONS[lang][key] !== undefined) {
+      elm.innerHTML = TRANSLATIONS[lang][key];
+    }
+  });
+
+  // dynamic renders
+  renderVehicles(lang);
+  renderSpares(lang);
+  renderFinance(lang);
+  renderInsurance(lang);
+  renderReviews(lang);
+
+  // branches text and maps
+  const b1 = DATA.branches[0], b2 = DATA.branches[1];
+  el('map-alambagh').src = b1.maps;
+  el('map-dubagga').src = b2.maps;
+  el('call-alambagh').href = `tel:${b1.phone}`;
+  el('call-dubagga').href = `tel:${b2.phone}`;
+  el('wa-alambagh').href = `https://wa.me/${DATA.whatsappNumber}?text=${encodeURIComponent((lang==='hi'?'शाखा जानकारी: ':'Branch info: ')+ (lang==='hi'? b1.name_hi : b1.name_en))}`;
+  el('wa-dubagga').href = `https://wa.me/${DATA.whatsappNumber}?text=${encodeURIComponent((lang==='hi'?'शाखा जानकारी: ':'Branch info: ')+ (lang==='hi'? b2.name_hi : b2.name_en))}`;
+  el('footer-wa').parentElement.href = `https://wa.me/${DATA.whatsappNumber}`;
+  el('wa-top').href = `https://wa.me/${DATA.whatsappNumber}`;
+  el('footer-fb').href = 'https://www.facebook.com/share/1JmZK6z3Ru/';
+  el('fb-top').href = 'https://www.facebook.com/share/1JmZK6z3Ru/';
+  el('footer-call').href = `tel:${DATA.branches[0].phone}`;
+  el('call-top').href = `tel:${DATA.branches[0].phone}`;
+
+  // finance description
+  el('finance-desc').textContent = TRANSLATIONS[lang].financeDesc || TRANSLATIONS[lang].financeNote || '';
+
+  // update placeholders
+  el('spare-search').placeholder = TRANSLATIONS[lang].spareSearchPlaceholder || el('spare-search').placeholder;
+  el('emi-product').querySelector('option') && (el('emi-product').querySelector('option').textContent = TRANSLATIONS[lang].select);
+}
+
+/* -------------------------
+   EMI Calculator
+   ------------------------- */
+function calcEMI(){
+  const priceSel = el('emi-product').value;
+  const manualPrice = Number((el('emi-price').value||'').replace(/[^0-9]/g,'')) || 0;
+  const price = priceSel ? Number(priceSel) : manualPrice;
+  const dp = Number(el('emi-dp').value||0);
+  const tenure = Math.max(1, Number(el('emi-tenure').value||1));
+  const rate = Number(el('emi-rate').value||0);
+  const loan = Math.max(0, price - dp);
+  const r = rate/100/12;
+  let emi = 0;
+  if(loan <= 0 || tenure<=0) emi = 0;
+  else if(r>0) emi = loan * r * Math.pow(1+r,tenure) / (Math.pow(1+r,tenure)-1);
+  else emi = loan/tenure;
+  el('emi-result').textContent = emi>0 ? (fmtINR(Math.round(emi)) || '') + (currentLang==='hi'?'/माह':'/mo') : '—';
+  el('emi-loan').textContent = loan>0 ? (fmtINR(Math.round(loan)) || '') : '—';
+}
+
+/* -------------------------
+   Spare search
+   ------------------------- */
+function spareSearch(query, lang='en'){
+  if(!query) return renderSpares(lang);
+  const q = query.trim().toLowerCase();
+  const res = DATA.spares.filter(s=>{
+    const name = (lang==='hi' ? s.name_hi : s.name_en) || '';
+    return name.toLowerCase().includes(q) || (s.price && s.price.toString().includes(q));
+  });
+  if(res.length) renderSpares(lang, res);
+  else {
+    el('spare-list').innerHTML = `<li style="padding:8px;color:var(--muted)">${TRANSLATIONS[lang].spareNotFound || (lang==='hi' ? 'मिलने वाला पार्ट नहीं। संपर्क करें।' : 'No matching spare found. Contact us to confirm availability.')}</li>`;
+  }
+}
+
+/* -------------------------
+   Lead form actions
+   ------------------------- */
+function initLeadForm(lang='en'){
+  const form = el('lead-form');
+  form.addEventListener('submit', e=>{
+    e.preventDefault();
+    const fd = new FormData(form); const data = Object.fromEntries(fd.entries());
+    const msgLines = [
+      (lang==='hi' ? 'लीड अनुरोध' : 'Lead Request'),
+      `${(lang==='hi'?'नाम':'Name')}: ${data.name}`,
+      `${(lang==='hi'?'फोन':'Phone')}: ${data.phone}`,
+      `${(lang==='hi'?'शाखा':'Branch')}: ${data.branch}`,
+      `${(lang==='hi'?'उत्पाद':'Product')}: ${data.product}`,
+      `${(lang==='hi'?'संदेश':'Msg')}: ${data.message || '-'}`,
+    ];
+    const text = msgLines.join('\n');
+    window.open(`https://wa.me/${DATA.whatsappNumber}?text=${encodeURIComponent(text)}`,'_blank');
+  });
+
+  el('req-callback').addEventListener('click', ()=>{
+    const fd = new FormData(form); const data = Object.fromEntries(fd.entries());
+    alert((currentLang==='hi'? 'धन्यवाद! हमारी टीम जल्द ही आपको कॉल करेगी।' : 'Thank you! Our team will call you shortly.') );
+  });
+}
+
+/* -------------------------
+   Refer / share
+   ------------------------- */
+function initRefer(lang='en'){
+  el('share-wa').addEventListener('click', ()=>{
+    const uid = Math.random().toString(36).slice(2,8);
+    const link = DATA.referralBase + uid;
+    const text = (lang==='hi' ? 'Autowala रेफरल — ₹2,000 कैशबैक पाएं! ' : 'Autowala Referral — Earn ₹2,000 cashback! ') + link;
+    window.open(`https://wa.me/${DATA.whatsappNumber}?text=${encodeURIComponent(text)}`,'_blank');
+  });
+  el('share-sms').addEventListener('click', ()=>{
+    const uid = Math.random().toString(36).slice(2,8);
+    const link = DATA.referralBase + uid;
+    const body = (currentLang==='hi' ? 'Autowala रेफरल — ₹2,000 कैशबैक पाएं! ' : 'Autowala Referral — Earn ₹2,000 cashback! ') + link;
+    window.location.href = `sms:?body=${encodeURIComponent(body)}`;
+  });
+}
+
+/* -------------------------
+   Language handling & boot
+   ------------------------- */
+let currentLang = 'en';
+
+function detectAndApplyLanguage(){
+  // detect browser language
+  const navLang = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+  if(navLang.startsWith('hi')) currentLang = 'hi';
+  else currentLang = localStorage.getItem('autowala_lang') || 'en';
+  el('lang-toggle').value = currentLang;
+  applyTranslations(currentLang);
+  initLeadForm(currentLang);
+  initRefer(currentLang);
+}
+
+el('lang-toggle').addEventListener('change', (e)=>{
+  currentLang = e.target.value;
+  localStorage.setItem('autowala_lang', currentLang);
+  applyTranslations(currentLang);
+});
+
+/* remaining UI wiring */
+document.addEventListener('DOMContentLoaded', ()=>{
+  // initial render/detect
+  detectAndApplyLanguage();
+
+  // wire spare search & clear
+  el('spare-search').addEventListener('input', ()=>spareSearch(el('spare-search').value, currentLang));
+  el('spare-clear').addEventListener('click', ()=>{ el('spare-search').value=''; renderSpares(currentLang); });
+
+  // EMI wiring
+  el('emi-calc-btn').addEventListener('click', calcEMI);
+  el('emi-product').addEventListener('change', ()=>{
+    const val = el('emi-product').value;
+    if(val) el('emi-price').value = Number(val);
+    calcEMI();
+  });
+
+  // wire nav tiles
+  document.querySelectorAll('.tile').forEach(t=>t.addEventListener('click', ()=>{ location.href = t.dataset.href; }));
+
+  // populate year
+  el('year').textContent = new Date().getFullYear();
+});
+
+</script>
+</body>
+</html>
+
