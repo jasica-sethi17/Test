@@ -827,7 +827,7 @@ function renderInsurance(lang='en') {
       </div>
       <div style="margin-top:10px;display:flex;gap:8px">
         <a class="btn ghost" href="${i.website}" target="_blank">Website</a>
-        <a class="btn primary" href="https://wa.me/+91880805057?text=${encodeURIComponent((lang==='hi'?'बीमा कोट अनुरोध: ':'Insurance quote: ')+name)}" target="_blank">💬 WhatsApp</a>
+        <a class="btn primary" href="https://wa.me/+918808050557?text=${encodeURIComponent((lang==='hi'?'बीमा कोट अनुरोध: ':'Insurance quote: ')+name)}" target="_blank">💬 WhatsApp</a>
       </div>
     `;
     box.appendChild(card);
@@ -881,7 +881,7 @@ function applyTranslations(lang='en'){
   if(el('wa-top')) el('wa-top').href = `https://wa.me/${DATA.whatsappNumber}`;
   if(el('footer-fb')) el('footer-fb').href = 'https://www.facebook.com/share/1JmZK6z3Ru/';
   if(el('fb-top')) el('fb-top').href = 'https://www.facebook.com/share/1JmZK6z3Ru/';
-  if(el('footer-call')) el('footer-call').href = `tel:${DATA.branches[0].phone}`;
+  if(el('footer-call')) el('footer-call').href = `tel:+918808050555`;
   if(el('call-top')) el('call-top').href = `tel:+916389907777`;
 
   // finance description
@@ -965,7 +965,7 @@ function initRefer(lang='en'){
   if(shareWa){
     shareWa.addEventListener('click', ()=>{
       const uid = Math.random().toString(36).slice(2,8); // referral code
-      const link = "https://autowala1.in"; // main website, not invalid /ref/
+      const link = "https://autowala.in"; // main website, not invalid /ref/
       const text = (lang==='hi' 
         ? `Autowala रेफरल — ₹2,000 कैशबैक पाएं!\nमेरा कोड: ${uid}\nलिंक: ${link}`
         : `Autowala Referral — Earn ₹2,000 cashback!\nMy code: ${uid}\nWebsite: ${link}`);
@@ -977,7 +977,7 @@ function initRefer(lang='en'){
   if(shareSms){
     shareSms.addEventListener('click', ()=>{
       const uid = Math.random().toString(36).slice(2,8);
-      const link = "https://autowala1.in";
+      const link = "https://autowala.in";
       const body = (lang==='hi' 
         ? `Autowala रेफरल — ₹2,000 कैशबैक पाएं!\nमेरा कोड: ${uid}\nलिंक: ${link}`
         : `Autowala Referral — Earn ₹2,000 cashback!\nMy code: ${uid}\nWebsite: ${link}`);
