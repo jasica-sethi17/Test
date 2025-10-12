@@ -112,37 +112,6 @@ footer{margin-top:30px;padding:24px 16px;border-top:1px solid rgba(255,255,255,0
 
 /* small helper */
 .kv{display:flex;gap:8px;align-items:center}
-.vehicle-img-container {
-  width: 100%;
-  height: 180px;          /* small size */
-  overflow: hidden;
-  position: relative;
-  transition: all 0.4s ease;
-}
-
-.vehicle-img-container.expanded {
-  height: 400px;          /* large size */
-}
-
-.vehicle-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: all 0.4s ease;
-}
-
-.expand-arrow {
-  position: absolute;
-  right: 10px;
-  bottom: 10px;
-  background: rgba(0,0,0,0.5);
-  color: #fff;
-  border: none;
-  padding: 6px 10px;
-  cursor: pointer;
-  font-size: 16px;
-  border-radius: 4px;
-}
 
 /* responsiveness improvements for mobile */
 @media(max-width:520px){
@@ -771,15 +740,8 @@ function renderVehicles(lang='en'){
     const card = document.createElement('div'); card.className='card';
     // keep price display simple — contact for price when price is null
     const priceHtml = v.price || v.price===0 ? `<div class="muted">${ (lang==='hi') ? 'कीमत' : 'Price' }: <strong>${fmtINR(v.price)}</strong></div>` : '';
-    const imgHtml = `
-    <div class="vehicle-img-container">
-    <img class="vehicle-img" src="${v.img}" alt="${name}">
-    <button class="expand-arrow">➤</button>
-    </div>
-    `;
-
     card.innerHTML = `
-      ${imgHtml}
+      <img class="vehicle-img" src="${v.img}" alt="${name}">
       <div class="title">${name}</div>
       ${priceHtml}
       <ul class="features-list">${(features||[]).map(f=>`<li>${f}</li>`).join('')}</ul>
@@ -1028,14 +990,6 @@ function initRefer(lang='en'){
 }initRefer('en');
 
 
-box.querySelectorAll('.expand-arrow').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const container = btn.closest('.vehicle-img-container');
-    container.classList.toggle('expanded');
-    // change arrow direction
-    btn.textContent = container.classList.contains('expanded') ? '◀' : '➤';
-  });
-});
 
 
 
